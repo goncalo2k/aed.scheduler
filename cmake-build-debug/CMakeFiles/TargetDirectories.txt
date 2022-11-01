@@ -1,0 +1,3 @@
+/home/goncalo2k/Desktop/AED/schedules/cmake-build-debug/CMakeFiles/schedules.dir
+/home/goncalo2k/Desktop/AED/schedules/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/goncalo2k/Desktop/AED/schedules/cmake-build-debug/CMakeFiles/rebuild_cache.dir
