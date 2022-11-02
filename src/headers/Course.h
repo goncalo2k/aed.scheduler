@@ -8,11 +8,15 @@ using namespace std;
 class Course {
     private:
         string code;
+        set<string> classes;
 
     public:
         Course(string code);
-        string getCode();
+        string getCode() const;
         void setCode(string code);
+        void addClass(const string& cl);
+        void removeClass(const string& cl);
+        set<string> getClasses() const;
 };
 
 
