@@ -1,9 +1,11 @@
 #include "../headers/Slot.h"
 
-Slot::Slot(string day, string time, string room) {
-    string weekday = day;
-    string startTime = time;
-    string endTime = room;
+Slot::Slot(string weekday, string startTime, string endTime, string type, int duration) {
+    this->weekday = weekday;
+    this->startTime = startTime;
+    this->endTime = endTime;
+    this->type = type;
+    this->duration = duration;
 }
 
 string Slot::getWeekDay() {

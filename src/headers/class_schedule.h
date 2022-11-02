@@ -9,17 +9,16 @@ using namespace std;
 
 class ClassSchedule {
 private:
-    string UCName;
-    string UCId;
+    Class cl;
     list<Slot> scheduleClasses;
 public:
-    ClassSchedule(string name, string id);
-    string getUCName();
-    string getUCId();
-    list<Slot> getClasses();
+    ClassSchedule(Class cl, list<Slot> classes);
+    Class getClass(); //Getter da turma
+    list<Slot> getClasses(); //Getter da lista de aulas
     void addClass(Slot class_);
-    void removeClass(Slot class_); //REMOVE: TBD
-    void setClasses(list<Slot> classes);
+    void removeClass(Slot class_);
+    void setClass(Class cl); //Setter da turma
+    void setClasses(list<Slot> classes); //Setter da lista de aulas
 };
 
 #endif

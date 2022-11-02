@@ -37,6 +37,8 @@ void readStudents(studentSet* students);
 void readClasses(classSet* classes);
 void readCourses(courseSet* courses);
 void listStudents(studentSet* students);
+void listClasses(classSet* classes);
+//void listCourses(courseSet* courses);
 
 
 int main() {
@@ -44,9 +46,13 @@ int main() {
     classSet classes;
     courseSet courses;
 
-    // readAll(&students, &classes, &courses);
+    //readAll(&students, &classes, &courses);
     readStudents(&students);
     listStudents(&students);
+    readClasses(&classes);
+    //listClasses(&classes);
+    //readCourses(&courses);
+    //listCourses(&courses);
 
     cout << " __________________________________________________ " << endl;
     cout << "  1 -                                               " << endl;
@@ -94,7 +100,31 @@ void readStudents(studentSet* students) {
 }
 
 void readClasses(classSet* classes) {
+    ifstream file("../schedules/classes.csv");
 
+    string line;
+    getline(file, line); // skip first line
+    while (getline(file,line)) {
+        istringstream iss(line);
+
+        string classCode;
+        string courseCode;
+        string weekday;
+        string startTime;
+        string endTime;
+        string classType;
+
+        getline(iss, classCode, ',');
+        getline(iss, courseCode, ',');
+        getline(iss, weekday, ',');
+        getline(iss, startTime, ',');
+        getline(iss, endTime, ',');
+        getline(iss, classType, ',');
+
+        auto cl = new Class(courseCode, classCode);
+        classes->insert(cl);
+    }
+    
 }
 
 void readCourses(courseSet* courses) {

@@ -1,22 +1,27 @@
 #include "../headers/Class.h"
 
-Class::Class(string uc_code, string class_code) {
-    this->uc_code = uc_code;
-    this->class_code = class_code;
+Class::Class() {
+    this->courseCode = "";
+    this->classCode = "";
+}
+
+Class::Class(string courseCode, string classCode) {
+    this->courseCode = courseCode;
+    this->classCode = classCode;
 }
 
 string Class::getUCCode() {
-    return this->uc_code;
+    return this->courseCode;
 }
 
 string Class::getClassCode() {
-    return this->class_code;
+    return this->classCode;
 }
 
 void Class::setUCCode(string code) {
-    this->uc_code = code;
+    this->courseCode = code;
 }
 
 void Class::setClassCode(string code) {
-    this->class_code = code;
+    this->classCode = code;
 }

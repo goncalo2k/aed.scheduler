@@ -7,12 +7,15 @@ using namespace std;
 
 class Class {
     private:
-        string uc_code;
-        string class_code;
+        string courseCode;
+        string classCode;
 
     public:
-        Class(string uc_code, string class_code);
-        string getUCCode();
+        Class(string courseCode, string classCode);
+
+    Class();
+
+    string getUCCode();
         string getClassCode();
         void setUCCode(string code);
         void setClassCode(string code);

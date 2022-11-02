@@ -4,6 +4,7 @@
 #define SLOT_H
 
 #include <string>
+#include "Class.h"
 
 using namespace std;
 class Slot {
@@ -14,7 +15,7 @@ class Slot {
         string type;
         int duration;
     public:
-        Slot(string day, string time, string room);
+        Slot(string weekday, string startTime, string endTime, string type, int duration);
         string getWeekDay();
         string getStartTime();
         string getEndTime();

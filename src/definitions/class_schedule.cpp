@@ -1,30 +1,26 @@
 #include "../headers/class_schedule.h"
 
-ClassSchedule::ClassSchedule(string name, string id) {
-    this->UCName = name;
-    this->UCId = id;
+ClassSchedule::ClassSchedule(Class cl, list<Slot> classes) {
+    this->cl = cl;
+    this->scheduleClasses = classes;
 }
 
-string ClassSchedule::getUCName() {
-    return this->UCName;
-}
-
-string ClassSchedule::getUCId() {
-    return this->UCId;
+Class ClassSchedule::getClass() {
+    return this->cl;
 }
 
 list<Slot> ClassSchedule::getClasses() {
     return this->scheduleClasses;
 }
 
+void ClassSchedule::setClass(Class cl) {
+    this->cl = cl;
+}
+
 void ClassSchedule::setClasses(list<Slot> classes) {
     this->scheduleClasses = classes;
 }
 
-void ClassSchedule::addClass(Slot class_) {
-    this->scheduleClasses.push_back(class_);
+void ClassSchedule::addClass(Slot cl) {
+    this->scheduleClasses.push_back(cl);
 }
-
-//REMOVE: TBD
-
-

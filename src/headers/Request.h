@@ -14,6 +14,7 @@ class Request {
         string final_class_code;
     public:
         Request(string type, string student_id, string uc_code, string initial_class_code, string final_class_code);
+        Request(string student_id, string uc_code, string initial_class_code, string final_class_code);
         string getType();
         string getStudentId();
         string getUCCode();
