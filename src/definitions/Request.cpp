@@ -1,4 +1,4 @@
-#include "../headers/request.h"
+#include "../headers/Request.h"
 
 Request::Request(std::string type, std::string student_id, std::string uc_code, std::string initial_class_code,
                  std::string final_class_code) {

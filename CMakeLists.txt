@@ -3,4 +3,4 @@ project(schedules)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(schedules main.cpp src/definition/slot.cpp src/headers/slot.h src/definition/student.cpp src/headers/student.h src/definition/uc_classes.cpp src/headers/uc_classes.h src/definition/class_schedule.cpp src/headers/class_schedule.h src/definition/schedule_management.cpp src/headers/schedule_management.h src/definition/request.cpp src/headers/request.h)
+add_executable(schedules main.cpp src/definitions/Slot.cpp src/headers/Slot.h src/definitions/Student.cpp src/headers/Student.h src/definitions/Class.cpp src/headers/Class.h src/definitions/class_schedule.cpp src/headers/class_schedule.h src/definitions/ScheduleManagement.cpp src/headers/ScheduleManagement.h src/definitions/Request.cpp src/headers/Request.h src/definitions/Course.cpp src/headers/Course.h)

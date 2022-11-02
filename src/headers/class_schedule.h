@@ -2,8 +2,8 @@
 #define SCHEDULES_CLASS_SCHEDULE_H
 
 #include <list>
-#include "slot.h"
-#include "uc_classes.h"
+#include "Slot.h"
+#include "Class.h"
 
 using namespace std;
 

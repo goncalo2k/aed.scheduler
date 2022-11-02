@@ -1,12 +1,12 @@
-#ifndef SCHEDULES_SCHEDULE_MANAGEMENT_H
-#define SCHEDULES_SCHEDULE_MANAGEMENT_H
+#ifndef SCHEDULES_SCHEDULEMANAGEMENT_H
+#define SCHEDULES_SCHEDULEMANAGEMENT_H
 
 #include <queue>
 #include <set>
 #include <vector>
-#include "student.h"
+#include "Student.h"
 #include "class_schedule.h"
-#include "request.h"
+#include "Request.h"
 
 using namespace std;
 
@@ -21,4 +21,4 @@ class Schedule_Management {
 };
 
 
-#endif //SCHEDULES_SCHEDULE_MANAGEMENT_H
+#endif //SCHEDULES_SCHEDULEMANAGEMENT_H

@@ -1,4 +1,4 @@
-#include "../headers/slot.h"
+#include "../headers/Slot.h"
 
 Slot::Slot(string day, string time, string room) {
     string weekday = day;

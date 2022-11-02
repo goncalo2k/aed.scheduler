@@ -1,16 +1,17 @@
-#ifndef SCHEDULES_UC_CLASSES_H
-#define SCHEDULES_UC_CLASSES_H
+#ifndef SCHEDULES_CLASS_H
+#define SCHEDULES_CLASS_H
 
-#include <string>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-class UC_Classes {
+class Class {
     private:
         string uc_code;
         string class_code;
+
     public:
-        UC_Classes(string uc_code, string class_code);
+        Class(string uc_code, string class_code);
         string getUCCode();
         string getClassCode();
         void setUCCode(string code);
@@ -18,4 +19,4 @@ class UC_Classes {
 };
 
 
-#endif //SCHEDULES_UC_CLASSES_H
+#endif //SCHEDULES_CLASS_H
