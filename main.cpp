@@ -1,11 +1,14 @@
 #include <bits/stdc++.h>
 
+
 #include "src/headers/Student.h"
 #include "src/headers/Class.h"
 #include "src/headers/Course.h"
 
 using namespace std;
 
+
+//
 struct compareStudent {
     bool operator()(Student* s1, Student* s2) const {
         return s1->getNumber() < s2->getNumber();
@@ -36,9 +39,11 @@ typedef set<Course*, compareCourse> courseSet;
 void readStudents(studentSet* students, classSet* classes, courseSet* courses);
 void readClasses(classSet* classes);
 void readCourses(courseSet* courses);
+void listMenu(studentSet* students, classSet* classes, courseSet* courses);
 void listStudents(studentSet* students);
 void listClasses(classSet* classes, studentSet* students);
 void listCourses(courseSet* courses, studentSet* students);
+
 
 int main() {
     studentSet students;
@@ -48,28 +53,27 @@ int main() {
     readClasses(&classes);
     readCourses(&courses);
     readStudents(&students, &classes, &courses);
-    //listStudents(&students);
-    //listClasses(&classes, &students);
-    //listCourses(&courses, &students);
 
     bool flag = true;
+
     while(flag) {
+
         cout << " __________________________________________________ " << endl;
         cout << "  1 - Listagens                                     " << endl;
         cout << "  2 -                                               " << endl;
         cout << "  3 -                                               " << endl;
         cout << "  4 -                                               " << endl;
         cout << "                                                    " << endl;
-        cout << "  0 - Exit                                          " << endl;
+        cout << "  0 - Sair                                          " << endl;
         cout << " __________________________________________________ " << endl;
+        cout << "  Option: ";
 
         char option;
         cin >> option;
 
         switch(option) {
             case '1':
-                cout.flush();
-                system("cls");
+                listMenu(&students, &classes, &courses);
                 break;
 
             case '0':
@@ -167,7 +171,6 @@ void readClasses(classSet* classes) {
     }
 }
 
-
 void readCourses(courseSet* courses) {
     ifstream file("../schedules/classes_per_uc.csv");
 
@@ -191,6 +194,36 @@ void readCourses(courseSet* courses) {
         }
 
         (*it)->addClass(classCode);
+    }
+}
+
+void listMenu(studentSet* students, classSet* classes, courseSet* courses) {
+    cout << " __________________________________________________ " << endl;
+    cout << "  1 - Listar estudantes                             " << endl;
+    cout << "  2 - Listar turmas                                 " << endl;
+    cout << "  3 - Listar unidades curriculares                  " << endl;
+    cout << "                                                    " << endl;
+    cout << "  0 - Voltar                                        " << endl;
+    cout << " __________________________________________________ " << endl;
+    cout << "  Option: ";
+
+    char option;
+    cin >> option;
+
+    switch(option) {
+        case '1':
+            listStudents(students);
+            break;
+        case '2':
+            listClasses(classes, students);
+            break;
+        case '3':
+            listCourses(courses, students);
+            break;
+        case '0':
+            break;
+        default:
+            cout << "Invalid option!" << endl;
     }
 }
 
