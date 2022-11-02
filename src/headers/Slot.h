@@ -1,31 +1,29 @@
-
-
 #ifndef SLOT_H
 #define SLOT_H
 
-#include <string>
-#include "Class.h"
+#include <bits/stdc++.h>
 
 using namespace std;
-class Slot {
-    private:
-        string weekday;
-        string startTime;
-        string endTime;
-        string type;
-        int duration;
-    public:
-        Slot(string weekday, string startTime, string endTime, string type, int duration);
-        string getWeekDay();
-        string getStartTime();
-        string getEndTime();
-        string getType();
-        int getDuration();
-        void setWeekDay(string day);
-        void setStartTime(string startTime);
-        void setEndTime(string endTime);
-        void setType(string type);
-};
 
+class Slot {
+private:
+    string weekday;
+    float startTime;
+    float endTime;
+    float duration;
+    string type;
+
+public:
+    Slot(string day, float startTime, float endTime, float duration, string type);
+    string getWeekDay() const;
+    string getStartTime() const;
+    string getEndTime() const;
+    string getType() const;
+    int getDuration() const;
+    void setWeekDay(string day);
+    void setStartTime(string startTime);
+    void setEndTime(string endTime);
+    void setType(string type);
+};
 
 #endif

@@ -14,7 +14,8 @@ struct compareStudent {
 
 struct compareClass {
     bool operator()(Class* c1, Class* c2) const {
-        return c1->getUCCode() < c2->getUCCode();
+        if (c1->getCourse() == c2->getCourse()) return c1->getCode() < c2->getCode();
+        return c1->getCourse() < c2->getCourse();
     }
 };
 
@@ -32,13 +33,9 @@ typedef set<Course*, compareCourse> courseSet;
 
 
 // functions
-void readAll(studentSet* students, classSet* classes, courseSet* courses);
 void readStudents(studentSet* students);
 void readClasses(classSet* classes);
 void readCourses(courseSet* courses);
-void listStudents(studentSet* students);
-void listClasses(classSet* classes);
-//void listCourses(courseSet* courses);
 
 
 int main() {
@@ -46,13 +43,9 @@ int main() {
     classSet classes;
     courseSet courses;
 
-    //readAll(&students, &classes, &courses);
     readStudents(&students);
-    listStudents(&students);
     readClasses(&classes);
-    //listClasses(&classes);
-    //readCourses(&courses);
-    //listCourses(&courses);
+    readCourses(&courses);
 
     cout << " __________________________________________________ " << endl;
     cout << "  1 -                                               " << endl;
@@ -65,6 +58,7 @@ int main() {
 
     return 0;
 }
+
 
 void readStudents(studentSet* students) {
     ifstream file("../schedules/students_classes.csv");
@@ -94,46 +88,42 @@ void readStudents(studentSet* students) {
             it = students->find(student);
         }
 
-        (*it)->addCourse(course);
-        (*it)->addClass(cl);
+        (*it)->addClass(make_pair(course, cl));
     }
 }
+
 
 void readClasses(classSet* classes) {
     ifstream file("../schedules/classes.csv");
 
     string line;
     getline(file, line); // skip first line
-    while (getline(file,line)) {
+
+    while (getline(file, line)) {
         istringstream iss(line);
 
-        string classCode;
-        string courseCode;
-        string weekday;
-        string startTime;
-        string endTime;
-        string classType;
+        string code;
+        string course;
+        string day;
+        int start;
+        int end;
 
-        getline(iss, classCode, ',');
-        getline(iss, courseCode, ',');
-        getline(iss, weekday, ',');
-        getline(iss, startTime, ',');
-        getline(iss, endTime, ',');
-        getline(iss, classType, ',');
+        getline(iss, code, ',');
+        getline(iss, course, ',');
+        getline(iss, day, ',');
+        iss >> start;
+        iss.ignore();
+        iss >> end;
 
-        auto cl = new Class(courseCode, classCode);
+        auto slot = new Slot(day, start, end);
+        auto cl = new Class(code, course, *slot);
         classes->insert(cl);
     }
-    
 }
 
 void readCourses(courseSet* courses) {
 
 }
 
-void listStudents(studentSet* students) {
-    for (auto const& student : *students) {
-        cout << student->getNumber() << " - " << student->getName() << endl;
-    }
-}
+
 

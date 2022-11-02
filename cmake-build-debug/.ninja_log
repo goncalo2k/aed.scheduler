@@ -1,22 +1,4 @@
 # ninja log v5
-1	260	1667376042042708089	build.ninja	8de094b627f015e6
+1	260	6891128963098225	build.ninja	8de094b627f015e6
 1592	1796	6890561101746327	schedules.exe	37f8ac3dfcb3c0c
-1	257	1667377953889668313	CMakeFiles/schedules.dir/src/definitions/Request.cpp.o	af724c1e18ac013c
-0	295	1667377953925668994	CMakeFiles/schedules.dir/src/definitions/Slot.cpp.o	acc18696e7778ad6
-0	14421	1667377968021935474	CMakeFiles/schedules.dir/src/definitions/Class.cpp.o	34d879679af94a24
-1	14484	1667377968117937288	CMakeFiles/schedules.dir/src/definitions/Student.cpp.o	915d5ac1bd3e145d
-1	14488	1667377968121937363	CMakeFiles/schedules.dir/src/definitions/Course.cpp.o	4037f2a562fa54f9
-1	14507	1667377968141937741	CMakeFiles/schedules.dir/src/definitions/class_schedule.cpp.o	c4ce00a6025577af
-1	14516	1667377968145937817	CMakeFiles/schedules.dir/src/definitions/ScheduleManagement.cpp.o	65fc368bc4100dc4
-0	14602	1667377968233939479	CMakeFiles/schedules.dir/main.cpp.o	c1074b3e1e3adea1
-14602	14689	1667377968317941066	schedules	a08990381997d6d1
-1	865	1667401491252902887	CMakeFiles/schedules.dir/src/definitions/Slot.cpp.o	acc18696e7778ad6
-1	882	1667401491268903035	CMakeFiles/schedules.dir/src/definitions/Class.cpp.o	34d879679af94a24
-2	909	1667401491296903295	CMakeFiles/schedules.dir/src/definitions/ScheduleManagement.cpp.o	65fc368bc4100dc4
-2	916	1667401491300903332	CMakeFiles/schedules.dir/src/definitions/class_schedule.cpp.o	c4ce00a6025577af
-1	990	1667401491376904037	CMakeFiles/schedules.dir/main.cpp.o	c1074b3e1e3adea1
-0	744	1667401876456463638	CMakeFiles/schedules.dir/main.cpp.o	c1074b3e1e3adea1
-1	777	1667401886672557895	CMakeFiles/schedules.dir/main.cpp.o	c1074b3e1e3adea1
-0	753	1667401917760844693	CMakeFiles/schedules.dir/main.cpp.o	c1074b3e1e3adea1
-0	723	1667402022137807319	CMakeFiles/schedules.dir/main.cpp.o	c1074b3e1e3adea1
 723	768	1667402022181807724	schedules	a08990381997d6d1

@@ -1,27 +1,40 @@
+#include <utility>
+
 #include "../headers/Class.h"
 
-Class::Class() {
-    this->courseCode = "";
-    this->classCode = "";
+Class::Class(string code, string course) {
+    this->code= std::move(code);
+    this->course = std::move(course);
 }
 
-Class::Class(string courseCode, string classCode) {
-    this->courseCode = courseCode;
-    this->classCode = classCode;
+string Class::getCode() const {
+    return this->code;
 }
 
-string Class::getUCCode() {
-    return this->courseCode;
+string Class::getCourse() const {
+    return this->course;
 }
 
-string Class::getClassCode() {
-    return this->classCode;
+void Class::addStudent(const Student& student) {
+    this->students.insert(student.getNumber());
 }
 
-void Class::setUCCode(string code) {
-    this->courseCode = code;
+void Class::removeStudent(const Student& student) {
+    if (this->students.find(student.getNumber()) != this->students.end()) this->students.erase(student.getNumber());
 }
 
-void Class::setClassCode(string code) {
-    this->classCode = code;
+set<int> Class::getStudents() const {
+    return this->students;
+}
+
+void Class::addSlot(const Slot& slot) {
+    this->slots.insert(slot);
+}
+
+void Class::removeSlot(const Slot& slot) {
+    if (this->slots.find(slot) != this->slots.end()) this->slots.erase(slot);
+}
+
+set<Slot> Class::getSlots() const {
+    return this->slots;
 }
