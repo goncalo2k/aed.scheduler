@@ -19,8 +19,8 @@ class Class {
         Class(string code, string course);
         string getCode() const;
         string getCourse() const;
-        void addStudent(const Student& student);
-        void removeStudent(const Student& student);
+        void addStudent(int student);
+        void removeStudent(int student);
         set<int> getStudents() const;
         void addSlot(const Slot& slot);
         void removeSlot(const Slot& slot);

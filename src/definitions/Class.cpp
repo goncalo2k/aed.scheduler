@@ -15,12 +15,12 @@ string Class::getCourse() const {
     return this->course;
 }
 
-void Class::addStudent(const Student& student) {
-    this->students.insert(student.getNumber());
+void Class::addStudent(int student) {
+    this->students.insert(student);
 }
 
-void Class::removeStudent(const Student& student) {
-    if (this->students.find(student.getNumber()) != this->students.end()) this->students.erase(student.getNumber());
+void Class::removeStudent(int student) {
+    if (this->students.find(student) != this->students.end()) this->students.erase(student);
 }
 
 set<int> Class::getStudents() const {
