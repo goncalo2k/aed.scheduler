@@ -1,45 +1,52 @@
 #include "../headers/Slot.h"
 
-Slot::Slot(string weekday, string startTime, string endTime, string type, int duration) {
+Slot::Slot(string weekday, float startTime, float endTime, float duration, string type) {
     this->weekday = weekday;
     this->startTime = startTime;
     this->endTime = endTime;
-    this->type = type;
     this->duration = duration;
+    this->type = type;
 }
 
-string Slot::getWeekDay() {
-    return weekday;
+string Slot::getWeekDay() const {
+    return this->weekday;
 }
 
-string Slot::getStartTime() {
-    return startTime;
+float Slot::getStartTime() const {
+    return this->startTime;
 }
 
-string Slot::getEndTime() {
-    return endTime;
+float Slot::getEndTime() const {
+    return this->endTime;
 }
 
-string Slot::getType() {
-    return type;
+float Slot::getDuration() const {
+    return this->duration;
 }
 
-int Slot::getDuration() {
-    return duration;
+string Slot::getType() const {
+    return this->type;
 }
 
 void Slot::setWeekDay(string day) {
-weekday = day;
+    this->weekday = day;
 }
 
-void Slot::setStartTime(string startTime) {
-startTime = startTime;
+void Slot::setStartTime(float startTime) {
+    this->startTime = startTime;
 }
 
-void Slot::setEndTime(string endt) {
-endTime = endTime;
+void Slot::setEndTime(float endTime) {
+    this->endTime = endTime;
 }
 
 void Slot::setType(string type) {
-type = type;
+    this->type = type;
 }
+
+bool Slot::operator<(const Slot& slot) const {
+    return this->startTime < slot.startTime;
+}
+
+
+
