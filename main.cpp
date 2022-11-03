@@ -43,7 +43,7 @@ void clearScreen();
 void wait();
 void listMenu(studentSet* students, classSet* classes, courseSet* courses);
 void studentsFilters(studentSet* students);
-void listStudents(studentSet* students, int op1, int op2, int op3, int min, int max);
+void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int min, int max);
 void classesFilters(classSet* classes);
 void listClasses(classSet* classes, studentSet* students);
 void listCourses(courseSet* courses, studentSet* students);
@@ -242,29 +242,44 @@ void listMenu(studentSet* students, classSet* classes, courseSet* courses) {
 void studentsFilters(studentSet* students) {
     clearScreen();
 
-    int op1 = -1, op2 = -1, op3 = -1;
+    int op1 = -1, op2 = -1, op3 = -1, op4 = -1;
     int min, max;
+
     cout << "Ordenar por: Numero (0) | Nome (1)" << endl;
-    while (op1 != 0 && op1 != 1) { cout << "Opcao:"; cin >> op1; }
-    cout << endl << "Intervalo" << endl;
-    cout << "Minimo:"; cin >> min;
-    cout << "Maximo:"; cin >> max;
-    cout << endl << "Ordenacao: Crescente (0) | Decrescente (1)" << endl;
+    while (op1 != 0 && op1 != 1) { cout << "Opcao:"; cin >> op1; cout << endl; }
+
+    cout << "Definir intervalo? Nao (0) | Sim (1)" << endl;
+    while (op4 != 0 && op4 != 1) { cout << "Opcao:"; cin >> op4; cout << endl; }
+    if (op4 == 1) {
+        cout << endl << "Intervalo" << endl;
+        cout << "Minimo:"; cin >> min;
+        cout << "Maximo:"; cin >> max;
+    }
+
+    cout << "Ordenacao: Crescente (0) | Decrescente (1)" << endl;
     while (op2 != 0 && op2 != 1) { cout << "Opcao:"; cin >> op2; cout << endl; }
-    cout << "Mostrar turmas de cada estudante? Sim (0) | Nao (1)" << endl;
+
+    cout << "Mostrar turmas de cada estudante? Nao (0) | Sim (1)" << endl;
     while (op3 != 0 && op3 != 1) { cout << "Opcao:"; cin >> op3; cout << endl; }
 
-    listStudents(students, op1, op2, op3, min, max);
+    listStudents(students, op1, op2, op3, op4, min, max);
 }
 
-void listStudents(studentSet* students, int op1, int op2, int op3, int min, int max) {
+void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int min, int max) {
     clearScreen();
 
     vector<Student*> v;
-    auto start = students->find(new Student(min, ""));
-    auto end = next(students->find(new Student(max, "")));
-    for (auto it = start; it != end; it++) {
-        v.push_back(*it);
+
+    for (auto student : *students) {
+        if (op4 == 1) {
+            if (student->getNumber() >= min && student->getNumber() <= max) {
+                v.push_back(student);
+            }
+        }
+
+        else {
+            v.push_back(student);
+        }
     }
 
     sort(v.begin(), v.end(), [op1, op2](Student* a, Student* b) {
@@ -285,7 +300,7 @@ void listStudents(studentSet* students, int op1, int op2, int op3, int min, int 
 
     for (auto student : v) {
         cout << "  " << student->getNumber() << " - " << student->getName() << endl;
-        if (op3 == 0) {
+        if (op3 == 1) {
             for (const auto& class_ : student->getClasses()) {
                 cout << "    " << class_.first << " - " << class_.second << endl;
             }
