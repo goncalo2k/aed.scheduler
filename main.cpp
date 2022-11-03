@@ -39,8 +39,12 @@ typedef set<Course*, compareCourse> courseSet;
 void readStudents(studentSet* students, classSet* classes, courseSet* courses);
 void readClasses(classSet* classes);
 void readCourses(courseSet* courses);
+void clearScreen();
+void wait();
 void listMenu(studentSet* students, classSet* classes, courseSet* courses);
-void listStudents(studentSet* students);
+void studentsFilters(studentSet* students);
+void listStudents(studentSet* students, int op1, int op2, int op3, int min, int max);
+void classesFilters(classSet* classes);
 void listClasses(classSet* classes, studentSet* students);
 void listCourses(courseSet* courses, studentSet* students);
 
@@ -54,9 +58,9 @@ int main() {
     readCourses(&courses);
     readStudents(&students, &classes, &courses);
 
-    bool flag = true;
-
-    while(flag) {
+    char option = '1';
+    while (option != '0') {
+        clearScreen();
 
         cout << " __________________________________________________ " << endl;
         cout << "  1 - Listagens                                     " << endl;
@@ -66,22 +70,17 @@ int main() {
         cout << "                                                    " << endl;
         cout << "  0 - Sair                                          " << endl;
         cout << " __________________________________________________ " << endl;
-        cout << "  Option: ";
+        cout << "  Opcao:";
 
-        char option;
         cin >> option;
 
-        switch(option) {
+        switch (option) {
             case '1':
                 listMenu(&students, &classes, &courses);
                 break;
-
             case '0':
-                flag = false;
-                break;
             default:
-                flag = true;
-                cout << "Invalid option!" << endl;
+                break;
         }
     }
 
@@ -197,43 +196,103 @@ void readCourses(courseSet* courses) {
     }
 }
 
+void clearScreen() {
+    cout << string(50, '\n');
+}
+
+void wait() {
+    cout << endl << "Press any key to continue...";
+    cin.get();
+    cin.get();
+}
+
 void listMenu(studentSet* students, classSet* classes, courseSet* courses) {
-    cout << " __________________________________________________ " << endl;
-    cout << "  1 - Listar estudantes                             " << endl;
-    cout << "  2 - Listar turmas                                 " << endl;
-    cout << "  3 - Listar unidades curriculares                  " << endl;
-    cout << "                                                    " << endl;
-    cout << "  0 - Voltar                                        " << endl;
-    cout << " __________________________________________________ " << endl;
-    cout << "  Option: ";
+    char option = '1';
+    while (option != '0') {
+        clearScreen();
 
-    char option;
-    cin >> option;
+        cout << " __________________________________________________ " << endl;
+        cout << "  1 - Listar estudantes                             " << endl;
+        cout << "  2 - Listar turmas                                 " << endl;
+        cout << "  3 - Listar unidades curriculares                  " << endl;
+        cout << "                                                    " << endl;
+        cout << "  0 - Voltar                                        " << endl;
+        cout << " __________________________________________________ " << endl;
+        cout << "  Opcao:";
 
-    switch(option) {
-        case '1':
-            listStudents(students);
-            break;
-        case '2':
-            listClasses(classes, students);
-            break;
-        case '3':
-            listCourses(courses, students);
-            break;
-        case '0':
-            break;
-        default:
-            cout << "Invalid option!" << endl;
+        cin >> option;
+
+        switch (option) {
+            case '1':
+                studentsFilters(students);
+                break;
+            case '2':
+                listClasses(classes, students);
+                break;
+            case '3':
+                listCourses(courses, students);
+                break;
+            case '0':
+            default:
+                break;
+        }
     }
 }
 
-void listStudents(studentSet* students) {
-    for (auto student : *students) {
-        cout << student->getNumber() << " - " << student->getName() << endl;
-        for (const auto& s: student->getClasses()) {
-            cout << "    " << s.first << " - " << s.second << endl;
+void studentsFilters(studentSet* students) {
+    clearScreen();
+
+    int op1 = -1, op2 = -1, op3 = -1;
+    int min, max;
+    cout << "Ordenar por: Numero (0) | Nome (1)" << endl;
+    while (op1 != 0 && op1 != 1) { cout << "Opcao:"; cin >> op1; }
+    cout << endl << "Intervalo" << endl;
+    cout << "Minimo:"; cin >> min;
+    cout << "Maximo:"; cin >> max;
+    cout << endl << "Ordenacao: Crescente (0) | Decrescente (1)" << endl;
+    while (op2 != 0 && op2 != 1) { cout << "Opcao:"; cin >> op2; cout << endl; }
+    cout << "Mostrar turmas de cada estudante? Sim (0) | Nao (1)" << endl;
+    while (op3 != 0 && op3 != 1) { cout << "Opcao:"; cin >> op3; cout << endl; }
+
+    listStudents(students, op1, op2, op3, min, max);
+}
+
+void listStudents(studentSet* students, int op1, int op2, int op3, int min, int max) {
+    clearScreen();
+
+    vector<Student*> v;
+    auto start = students->find(new Student(min, ""));
+    auto end = next(students->find(new Student(max, "")));
+    for (auto it = start; it != end; it++) {
+        v.push_back(*it);
+    }
+
+    sort(v.begin(), v.end(), [op1, op2](Student* a, Student* b) {
+        if (op1 == 0) {
+            if (op2 == 0) {
+                return a->getNumber() < b->getNumber();
+            } else {
+                return a->getNumber() > b->getNumber();
+            }
+        } else {
+            if (op2 == 0) {
+                return a->getName() < b->getName();
+            } else {
+                return a->getName() > b->getName();
+            }
+        }
+    });
+
+    for (auto student : v) {
+        cout << "  " << student->getNumber() << " - " << student->getName() << endl;
+        if (op3 == 0) {
+            for (const auto& class_ : student->getClasses()) {
+                cout << "    " << class_.first << " - " << class_.second << endl;
+            }
         }
     }
+
+    wait();
 }
 
 void listClasses(classSet* classes, studentSet* students) {
