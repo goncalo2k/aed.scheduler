@@ -44,9 +44,12 @@ void wait();
 void listMenu(studentSet* students, classSet* classes, courseSet* courses);
 void studentsFilters(studentSet* students);
 void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int min, int max);
-void classesFilters(classSet* classes);
-void listClasses(classSet* classes, studentSet* students);
-void listCourses(courseSet* courses, studentSet* students);
+void classesFilters(classSet* classes, studentSet* students);
+void listClasses(classSet* classes, studentSet* students, int op1, int op2, int op3);
+void coursesFilters(courseSet* courses, studentSet* students);
+void listCourses(courseSet* courses, studentSet* students, int op1, int op2, int op3);
+void scheduleView(studentSet* students, classSet* classes);
+//void scheduleManagement(studentSet* students, classSet* classes, courseSet* courses);
 
 
 int main() {
@@ -64,9 +67,8 @@ int main() {
 
         cout << " __________________________________________________ " << endl;
         cout << "  1 - Listagens                                     " << endl;
-        cout << "  2 -                                               " << endl;
-        cout << "  3 -                                               " << endl;
-        cout << "  4 -                                               " << endl;
+        cout << "  2 - Visualizacao de horarios                      " << endl;
+        cout << "  3 - Gestao de horarios                            " << endl;
         cout << "                                                    " << endl;
         cout << "  0 - Sair                                          " << endl;
         cout << " __________________________________________________ " << endl;
@@ -78,7 +80,11 @@ int main() {
             case '1':
                 listMenu(&students, &classes, &courses);
                 break;
-            case '0':
+            case '2':
+                scheduleView(&students, &classes);
+                break;
+            case '3':
+                break;
             default:
                 break;
         }
@@ -227,10 +233,10 @@ void listMenu(studentSet* students, classSet* classes, courseSet* courses) {
                 studentsFilters(students);
                 break;
             case '2':
-                listClasses(classes, students);
+                classesFilters(classes, students);
                 break;
             case '3':
-                listCourses(courses, students);
+                coursesFilters(courses, students);
                 break;
             case '0':
             default:
@@ -263,6 +269,8 @@ void studentsFilters(studentSet* students) {
     while (op3 != 0 && op3 != 1) { cout << "Opcao:"; cin >> op3; cout << endl; }
 
     listStudents(students, op1, op2, op3, op4, min, max);
+
+    wait();
 }
 
 void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int min, int max) {
@@ -270,14 +278,17 @@ void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int 
 
     vector<Student*> v;
 
-    for (auto student : *students) {
-        if (op4 == 1) {
+    if (op4 == 1) {
+        for (auto student : *students) {
             if (student->getNumber() >= min && student->getNumber() <= max) {
                 v.push_back(student);
             }
         }
 
-        else {
+    }
+
+    else {
+        for (auto student : *students) {
             v.push_back(student);
         }
     }
@@ -306,34 +317,139 @@ void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int 
             }
         }
     }
+}
+
+void classesFilters(classSet* classes, studentSet* students) {
+    clearScreen();
+
+    int op1 = -1, op2 = -1, op3 = -1, op4 = -1;
+
+    cout << "Ordenar por: Codigo (0) | Ocupacao (1)" << endl;
+    while (op1 != 0 && op1 != 1) { cout << "Opcao:"; cin >> op1; cout << endl; }
+
+    cout << "Ordenacao: Crescente (0) | Decrescente (1)" << endl;
+    while (op2 != 0 && op2 != 1) { cout << "Opcao:"; cin >> op2; cout << endl; }
+
+    cout << "Mostrar alunos de cada turma? Nao (0) | Sim (1)" << endl;
+    while (op3 != 0 && op3 != 1) { cout << "Opcao:"; cin >> op3; cout << endl; }
+
+    listClasses(classes, students, op1, op2, op3);
 
     wait();
 }
 
-void listClasses(classSet* classes, studentSet* students) {
-    for (auto cl : *classes) {
-        cout << cl->getCourse() << " - " << cl->getCode() << endl;
-        for (const auto& s: cl->getSlots()) {
-            cout << "    " << s.getWeekDay() << " - " << s.getStartTime() << " - " << s.getEndTime() << " - " << s.getDuration() << " - " << s.getType() << endl;
-        }
+void listClasses(classSet* classes, studentSet* students, int op1, int op2, int op3) {
+    clearScreen();
 
-        for (const auto& s: cl->getStudents()) {
-            auto it = students->find(new Student(s, ""));
-            cout << "    " << (*it)->getNumber() << " - " << (*it)->getName() << endl;
+    vector<Class*> v;
+
+    for (auto cl : *classes) {
+        v.push_back(cl);
+    }
+
+    sort(v.begin(), v.end(), [op1, op2](Class* a, Class* b) {
+        if (op1 == 0) {
+            if (op2 == 0) {
+                return a->getCode() < b->getCode();
+            } else {
+                return a->getCode() > b->getCode();
+            }
+        } else {
+            if (op2 == 0) {
+                return a->getStudents().size() < b->getStudents().size();
+            } else {
+                return a->getStudents().size() > b->getStudents().size();
+            }
+        }
+    });
+
+
+    for (auto cl : v) {
+        cout << "  " << cl->getCode() << " - " << cl->getCourse() << endl;
+        if (op3 == 1) {
+            for (const auto& s: cl->getStudents()) {
+                auto it = students->find(new Student(s, ""));
+                cout << "    " << (*it)->getNumber() << " - " << (*it)->getName() << endl;
+            }
+        }
+    }
+
+    wait();
+}
+
+void coursesFilters(courseSet *courses, studentSet *students) {
+    clearScreen();
+
+    int op1 = -1, op2 = -1, op3 = -1;
+
+    cout << "Ordenacao (por ocupacao): Crescente (0) | Decrescente (1)" << endl;
+    while (op1 != 0 && op1 != 1) { cout << "Opcao:"; cin >> op1; cout << endl; }
+
+    cout << "Mostrar turmas de cada unidade curricular? Nao (0) | Sim (1)" << endl;
+    while (op2 != 0 && op2 != 1) { cout << "Opcao:"; cin >> op2; cout << endl; }
+
+    cout << "Mostrar estudantes de cada unidade curricular? Nao (0) | Sim (1)" << endl;
+    while (op3 != 0 && op3 != 1) { cout << "Opcao:"; cin >> op3; cout << endl; }
+
+    listCourses(courses, students, op1, op2, op3);
+
+    wait();
+}
+
+void listCourses(courseSet* courses, studentSet* students, int op1, int op2, int op3) {
+    clearScreen();
+
+    vector<Course*> v;
+
+    for (auto course : *courses) {
+        v.push_back(course);
+    }
+
+    sort(v.begin(), v.end(), [op1](Course* a, Course* b) {
+        if (op1 == 0) {
+            return a->getStudents().size() < b->getStudents().size();
+        } else {
+            return a->getStudents().size() > b->getStudents().size();
+        }
+    });
+
+    for (auto course : v) {
+        cout << "  " << course->getCode() << endl;
+        if (op2 == 1) {
+            for (const auto& class_ : course->getClasses()) {
+                cout << "    " << class_ << endl;
+                if (op3 == 1) {
+                    for (const auto& student : course->getStudents()) {
+                        auto it = students->find(new Student(student, ""));
+                        cout << "        " << (*it)->getNumber() << " - " << (*it)->getName() << endl;
+                    }
+                }
+            }
         }
     }
 }
 
-void listCourses(courseSet* courses, studentSet* students) {
-    for (auto course : *courses) {
-        cout << course->getCode() << endl;
-        for (const auto& s: course->getClasses()) {
-            cout << "    " << s << endl;
-        }
+void scheduleView(studentSet* students, classSet* classes) {
+    clearScreen();
 
-        for (const auto& s: course->getStudents()) {
-            auto it = students->find(new Student(s, ""));
-            cout << "    " << (*it)->getNumber() << " - " << (*it)->getName() << endl;
+    auto it1 = students->end();
+    while (it1 == students->end()) {
+        int number;
+        cout << "Introduza o numero de estudante:";
+        cin >> number; cout << endl;
+        it1 = students->find(new Student(number, ""));
+    }
+
+    set<Slot> slots;
+    for (const auto &cl: (*it1)->getClasses()) {
+        auto it2 = classes->find(new Class(cl.second, cl.first));
+        for (const auto &slot: (*it2)->getSlots()) {
+            slots.insert(slot);
         }
     }
+
+    (*it1)->setSchedule(new Schedule(slots));
+    (*it1)->getSchedule()->printSchedule();
+
+    wait();
 }

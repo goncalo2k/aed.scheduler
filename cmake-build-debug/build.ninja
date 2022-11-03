@@ -85,6 +85,12 @@ build CMakeFiles/schedules.dir/src/definitions/Course.cpp.obj: CXX_COMPILER__sch
   OBJECT_DIR = CMakeFiles\schedules.dir
   OBJECT_FILE_DIR = CMakeFiles\schedules.dir\src\definitions
 
+build CMakeFiles/schedules.dir/src/definitions/Schedule.cpp.obj: CXX_COMPILER__schedules_Debug C$:/Users/duart/Desktop/aed.scheduler/src/definitions/Schedule.cpp || cmake_object_order_depends_target_schedules
+  DEP_FILE = CMakeFiles\schedules.dir\src\definitions\Schedule.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\schedules.dir
+  OBJECT_FILE_DIR = CMakeFiles\schedules.dir\src\definitions
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target schedules
@@ -93,7 +99,7 @@ build CMakeFiles/schedules.dir/src/definitions/Course.cpp.obj: CXX_COMPILER__sch
 #############################################
 # Link the executable schedules.exe
 
-build schedules.exe: CXX_EXECUTABLE_LINKER__schedules_Debug CMakeFiles/schedules.dir/main.cpp.obj CMakeFiles/schedules.dir/src/definitions/Slot.cpp.obj CMakeFiles/schedules.dir/src/definitions/Student.cpp.obj CMakeFiles/schedules.dir/src/definitions/Class.cpp.obj CMakeFiles/schedules.dir/src/definitions/Request.cpp.obj CMakeFiles/schedules.dir/src/definitions/Course.cpp.obj
+build schedules.exe: CXX_EXECUTABLE_LINKER__schedules_Debug CMakeFiles/schedules.dir/main.cpp.obj CMakeFiles/schedules.dir/src/definitions/Slot.cpp.obj CMakeFiles/schedules.dir/src/definitions/Student.cpp.obj CMakeFiles/schedules.dir/src/definitions/Class.cpp.obj CMakeFiles/schedules.dir/src/definitions/Request.cpp.obj CMakeFiles/schedules.dir/src/definitions/Course.cpp.obj CMakeFiles/schedules.dir/src/definitions/Schedule.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\schedules.dir

@@ -1,11 +1,13 @@
+#include <utility>
+
 #include "../headers/Slot.h"
 
 Slot::Slot(string weekday, float startTime, float endTime, float duration, string type) {
-    this->weekday = weekday;
+    this->weekday = std::move(weekday);
     this->startTime = startTime;
     this->endTime = endTime;
     this->duration = duration;
-    this->type = type;
+    this->type = std::move(type);
 }
 
 string Slot::getWeekDay() const {

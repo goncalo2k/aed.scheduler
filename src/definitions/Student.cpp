@@ -26,3 +26,12 @@ void Student::removeClass(const pair<string, string>& cl) {
 set<pair<string, string>> Student::getClasses() const {
     return this->classes;
 }
+
+Schedule* Student::getSchedule() const {
+    return this->schedule;
+}
+
+void Student::setSchedule(Schedule* schedule) {
+    this->schedule = schedule;
+}
+
