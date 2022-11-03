@@ -49,7 +49,7 @@ void listClasses(classSet* classes, studentSet* students, int op1, int op2, int 
 void coursesFilters(courseSet* courses, studentSet* students);
 void listCourses(courseSet* courses, studentSet* students, int op1, int op2, int op3);
 void scheduleView(studentSet* students, classSet* classes);
-//void scheduleManagement(studentSet* students, classSet* classes, courseSet* courses);
+void scheduleManagement(studentSet* students, classSet* classes, courseSet* courses);
 
 
 int main() {
@@ -84,6 +84,7 @@ int main() {
                 scheduleView(&students, &classes);
                 break;
             case '3':
+                scheduleManagement(&students, &classes, &courses);
                 break;
             default:
                 break;
@@ -238,7 +239,6 @@ void listMenu(studentSet* students, classSet* classes, courseSet* courses) {
             case '3':
                 coursesFilters(courses, students);
                 break;
-            case '0':
             default:
                 break;
         }
@@ -365,7 +365,7 @@ void listClasses(classSet* classes, studentSet* students, int op1, int op2, int 
 
 
     for (auto cl : v) {
-        cout << "  " << cl->getCode() << " - " << cl->getCourse() << endl;
+        cout << "  " << cl->getCourse() << " - " << cl->getCode() << endl;
         if (op3 == 1) {
             for (const auto& s: cl->getStudents()) {
                 auto it = students->find(new Student(s, ""));
@@ -452,4 +452,24 @@ void scheduleView(studentSet* students, classSet* classes) {
     (*it1)->getSchedule()->printSchedule();
 
     wait();
+}
+
+void scheduleManagement(studentSet* students, classSet* classes, courseSet* courses) {
+    char option = '1';
+    while (option != '0') {
+        clearScreen();
+
+        cout << " __________________________________________________ " << endl;
+        cout << "  1 - Listagens                                     " << endl;
+        cout << "  2 - Visualizacao de horarios                      " << endl;
+        cout << "  3 - Gestao de horarios                            " << endl;
+        cout << "                                                    " << endl;
+        cout << "  0 - Sair                                          " << endl;
+        cout << " __________________________________________________ " << endl;
+        cout << "  Opcao:";
+
+        cin >> option;
+
+
+    }
 }

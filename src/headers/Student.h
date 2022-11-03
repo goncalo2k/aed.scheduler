@@ -22,10 +22,6 @@ class Student {
         set<pair<string, string>> getClasses() const;
         Schedule* getSchedule() const;
         void setSchedule(Schedule* schedule);
-
-        bool operator<(Student* s2) const;
-
-
 };
 
 #endif //SCHEDULES_STUDENT_H

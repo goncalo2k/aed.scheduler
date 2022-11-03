@@ -34,4 +34,3 @@ Schedule* Student::getSchedule() const {
 void Student::setSchedule(Schedule* schedule) {
     this->schedule = schedule;
 }
-
