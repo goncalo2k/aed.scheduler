@@ -1,50 +1,29 @@
 #include "../headers/Request.h"
 
-Request::Request(std::string type, std::string student_id, std::string uc_code, std::string initial_class_code,
-                 std::string final_class_code) {
+Request::Request(int type, Student* student, Class* initialClass, Class* finalClass, Course* course) {
     this->type = type;
-    this->student_id = student_id;
-    this->uc_code = uc_code;
-    this->initial_class_code = initial_class_code;
-    this->final_class_code = final_class_code;
-};
-
-string Request::getType() {
-    return this->type;
+    this->student = student;
+    this->initialClass = initialClass;
+    this->finalClass = finalClass;
+    this->course = course;
 }
 
-string Request::getStudentId() {
-    return this->student_id;
-}
-
-string Request::getUCCode() {
-    return this->uc_code;
-}
-
-string Request::getInitialClassCode() {
-    return this->initial_class_code;
-}
-
-string Request::getFinalClassCode() {
-    return this->final_class_code;
-}
-
-void Request::setType(string type) {
+Request::Request(int type, Student* student, Class* initialClass, Course* course) {
     this->type = type;
+    this->student = student;
+    this->initialClass = initialClass;
+    this->finalClass = nullptr;
+    this->course = course;
 }
 
-void Request::setStudentId(string id) {
-    this->student_id = id;
-}
+void Request::process() {
+    if (this->type == 1) {
+        this->student->removeClass(make_pair(initialClass->getCourse(), initialClass->getCode()));
+        initialClass->removeStudent(this->student->getNumber());
+        course->removeStudent(this->student->getNumber());
+    }
 
-void Request::setUCCode(string code) {
-    this->uc_code = code;
-}
-
-void Request::setInitialClassCode(string code) {
-    this->initial_class_code = code;
-}
-
-void Request::setFinalClassCode(string code) {
-    this->final_class_code = code;
+    else if (this->type == 2) {
+            
+    }
 }

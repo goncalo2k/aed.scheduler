@@ -30,22 +30,6 @@ string Slot::getType() const {
     return this->type;
 }
 
-void Slot::setWeekDay(string day) {
-    this->weekday = day;
-}
-
-void Slot::setStartTime(float startTime) {
-    this->startTime = startTime;
-}
-
-void Slot::setEndTime(float endTime) {
-    this->endTime = endTime;
-}
-
-void Slot::setType(string type) {
-    this->type = type;
-}
-
 bool Slot::operator<(const Slot& slot) const {
     return this->startTime < slot.startTime;
 }

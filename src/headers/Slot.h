@@ -20,10 +20,6 @@ class Slot {
         float getEndTime() const;
         float getDuration() const;
         string getType() const;
-        void setWeekDay(string day);
-        void setStartTime(float startTime);
-        void setEndTime(float endTime);
-        void setType(string type);
 
         bool operator<(const Slot& slot) const;
 };

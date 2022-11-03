@@ -2,30 +2,24 @@
 #define SCHEDULES_REQUEST_H
 
 #include <string>
+#include "Student.h"
+#include "Class.h"
+#include "Course.h"
 
 using namespace std;
 
 class Request {
     private:
-        string type;
-        string student_id;
-        string uc_code;
-        string initial_class_code;
-        string final_class_code;
-    public:
-        Request(string type, string student_id, string uc_code, string initial_class_code, string final_class_code);
-        Request(string student_id, string uc_code, string initial_class_code, string final_class_code);
-        string getType();
-        string getStudentId();
-        string getUCCode();
-        string getInitialClassCode();
-        string getFinalClassCode();
-        void setType(string type);
-        void setStudentId(string id);
-        void setUCCode(string code);
-        void setInitialClassCode(string code);
-        void setFinalClassCode(string code);
-};
+        int type;
+        Student* student;
+        Class* initialClass;
+        Class* finalClass;
+        Course* course;
 
+    public:
+        Request(int type, Student* student, Class* initialClass, Class* finalClass, Course* course);
+        Request(int type, Student* student, Class* initialClass, Course* course);
+        void process();
+};
 
 #endif //SCHEDULES_REQUEST_H

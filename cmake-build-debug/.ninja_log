@@ -68,3 +68,13 @@
 15	2268	6892060434818986	CMakeFiles/schedules.dir/src/definitions/Class.cpp.obj	6f843f6aa2ca3c2b
 5	3318	6892060445308984	CMakeFiles/schedules.dir/main.cpp.obj	de0f6631e97ae1b5
 3319	3699	6892060449078979	schedules.exe	4b12c28f4ea1d268
+10	512	6892078466807990	CMakeFiles/schedules.dir/src/definitions/Request.cpp.obj	b856b96577b64aca
+5	2869	6892078490368241	CMakeFiles/schedules.dir/main.cpp.obj	de0f6631e97ae1b5
+2869	3420	6892078495858226	schedules.exe	4b12c28f4ea1d268
+11	2245	6892102255180907	CMakeFiles/schedules.dir/src/definitions/Slot.cpp.obj	a4bf8ca0ade9383f
+30	2355	6892102256300927	CMakeFiles/schedules.dir/src/definitions/Request.cpp.obj	b856b96577b64aca
+16	2478	6892102257520909	CMakeFiles/schedules.dir/src/definitions/Student.cpp.obj	6820da875ba058ab
+21	2563	6892102258380906	CMakeFiles/schedules.dir/src/definitions/Schedule.cpp.obj	640d304f76dbaba5
+25	2677	6892102259510921	CMakeFiles/schedules.dir/src/definitions/Class.cpp.obj	6f843f6aa2ca3c2b
+6	3435	6892102267080911	CMakeFiles/schedules.dir/main.cpp.obj	de0f6631e97ae1b5
+3435	3868	6892102271390901	schedules.exe	4b12c28f4ea1d268
