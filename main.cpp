@@ -8,13 +8,20 @@
 using namespace std;
 
 
-//
+/**
+ * @brief CompareStudent
+ * Allows to compare two students by their numbers.
+ */
 struct compareStudent {
     bool operator()(Student* s1, Student* s2) const {
         return s1->getNumber() < s2->getNumber();
     }
 };
 
+/**
+ * @brief CompareClass
+ * Allows to compare two classes by their codes.
+ */
 struct compareClass {
     bool operator()(Class* c1, Class* c2) const {
         if (c1->getCourse() == c2->getCourse()) return c1->getCode() < c2->getCode();
@@ -22,6 +29,10 @@ struct compareClass {
     }
 };
 
+/**
+ * @brief CompareCourse
+ * Allows to compare two courses by their codes.
+ */
 struct compareCourse {
     bool operator()(Course* c1, Course* c2) const {
         return c1->getCode() < c2->getCode();
@@ -50,7 +61,7 @@ void coursesFilters(courseSet* courses, studentSet* students);
 void listCourses(courseSet* courses, studentSet* students, int op1, int op2, int op3);
 void scheduleView(studentSet* students, classSet* classes);
 void scheduleManagement(studentSet* students, classSet* classes, courseSet* courses);
-
+void requestsMenu(studentSet* students, classSet* classes, courseSet* courses);
 
 int main() {
     studentSet students;
@@ -94,7 +105,13 @@ int main() {
     return 0;
 }
 
-
+/**
+ * @brief readStudents
+ * Reads the students from the file "students_classes.csv" and adds them to the respective set, as well as their classes and the courses they're enrolled in.
+ * @param students - Set of students - read from the files.
+ * @param classes - Set of classes read from the files.
+ * @param courses - Set of courses read from the files.
+ */
 void readStudents(studentSet* students, classSet* classes, courseSet* courses) {
     ifstream file("../schedules/students_classes.csv");
 
@@ -139,6 +156,11 @@ void readStudents(studentSet* students, classSet* classes, courseSet* courses) {
     }
 }
 
+/**
+ * @brief readClasses
+ * Reads the classes from the file "classes.csv" and adds them to the respective  set.
+ * @param classes - Set of classes read from the files.
+ */
 void readClasses(classSet* classes) {
     ifstream file("../schedules/classes.csv");
 
@@ -177,6 +199,11 @@ void readClasses(classSet* classes) {
     }
 }
 
+/**
+ * @brief readCourses
+ * Reads the courses from the file "classes_per_uc.csv" and adds them to the respective set.
+ * @param courses - Set of courses read from the files.
+ */
 void readCourses(courseSet* courses) {
     ifstream file("../schedules/classes_per_uc.csv");
 
@@ -203,16 +230,31 @@ void readCourses(courseSet* courses) {
     }
 }
 
+/**
+ * @brief clearScreen
+ * Clears the screen.
+ */
 void clearScreen() {
     cout << string(50, '\n');
 }
 
+/**
+ * @brief wait
+ * Waits for the user to press any key.
+ */
 void wait() {
     cout << endl << "Press any key to continue...";
     cin.get();
     cin.get();
 }
 
+/**
+ * @brief listMenu
+ * Displays the list menu.
+ * @param students - Set of students read from the files.
+ * @param classes - Set of classes read from the files.
+ * @param courses - Set of courses read from the files.
+ */
 void listMenu(studentSet* students, classSet* classes, courseSet* courses) {
     char option = '1';
     while (option != '0') {
@@ -245,6 +287,11 @@ void listMenu(studentSet* students, classSet* classes, courseSet* courses) {
     }
 }
 
+/**
+ * @brief studentsFilters
+ * Handles all the users' options when listing students.
+ * @param students - Set of students read from the files.
+ */
 void studentsFilters(studentSet* students) {
     clearScreen();
 
@@ -273,6 +320,17 @@ void studentsFilters(studentSet* students) {
     wait();
 }
 
+/**
+ * @listStudents
+ * Lists all the students in the set, correctly filtered, according to studentFilters.
+ * @param students - Set of students read from the files.
+ * @param op1 - Option 1 - manages how the students will be displayed: either by name or by number.
+ * @param op2 - Option 2 - manages the order of the students: either ascending or descending.
+ * @param op3 - Option 3 - manages whether the classes of each student will be displayed or not.
+ * @param op4 - Option 4 - manages whether all the students will be displayed or just a part of them.
+ * @param min - Lower bound of the interval for option 4.
+ * @param max - Upper bound of the interval for option 4.
+ */
 void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int min, int max) {
     clearScreen();
 
@@ -319,6 +377,12 @@ void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int 
     }
 }
 
+/**
+ * @brief classesFilters
+ * Handles all the users' options when listing classes.
+ * @param classes - Set of classes read from the files.
+ * @param students - Set of students read from the files.
+ */
 void classesFilters(classSet* classes, studentSet* students) {
     clearScreen();
 
@@ -338,6 +402,15 @@ void classesFilters(classSet* classes, studentSet* students) {
     wait();
 }
 
+/**
+ * @brief listClasses
+ * Lists all the classes in the set, correctly filtered, according to classFilters.
+ * @param classes - Set of classes read from the files.
+ * @param students - Set of students read from the files.
+ * @param op1 - Option 1 - manages how the classes will be displayed: either by code or by occupation.
+ * @param op2 - Option 2 - manages the order of the classes: either ascending or descending.
+ * @param op3 - Option 3 - manages whether the students of each class will be displayed or not.
+ */
 void listClasses(classSet* classes, studentSet* students, int op1, int op2, int op3) {
     clearScreen();
 
@@ -377,6 +450,12 @@ void listClasses(classSet* classes, studentSet* students, int op1, int op2, int 
     wait();
 }
 
+/**
+ * courseFilters
+ * Handles all the users' options when listing courses.
+ * @param courses - Set of courses read from the files.
+ * @param students - Set of students read from the files.
+ */
 void coursesFilters(courseSet *courses, studentSet *students) {
     clearScreen();
 
@@ -396,6 +475,15 @@ void coursesFilters(courseSet *courses, studentSet *students) {
     wait();
 }
 
+/**
+ * @brief listCourses
+ * Lists all the courses in the set, correctly filtered, according to courseFilters.
+ * @param courses - Set of courses read from the files.
+ * @param students - Set of students read from the files.
+ * @param op1 - Option 1 - manages the order of the courses: either ascending or descending.
+ * @param op2 - Option 2 - manages whether the classes of each course will be displayed or not.
+ * @param op3 - Option 3 - manages whether the students of each course will be displayed or not.
+ */
 void listCourses(courseSet* courses, studentSet* students, int op1, int op2, int op3) {
     clearScreen();
 
@@ -429,6 +517,14 @@ void listCourses(courseSet* courses, studentSet* students, int op1, int op2, int
     }
 }
 
+//falta comentar em condicoes a partir daqui
+
+/**
+ * @brief scheduleFilters
+ * DAWSDAWDWA
+ * @param students
+ * @param classes
+ */
 void scheduleView(studentSet* students, classSet* classes) {
     clearScreen();
 
@@ -460,9 +556,9 @@ void scheduleManagement(studentSet* students, classSet* classes, courseSet* cour
         clearScreen();
 
         cout << " __________________________________________________ " << endl;
-        cout << "  1 - Listagens                                     " << endl;
-        cout << "  2 - Visualizacao de horarios                      " << endl;
-        cout << "  3 - Gestao de horarios                            " << endl;
+        cout << "  1 - Visualizar o horario de um aluno              " << endl;
+        cout << "  2 - Visualizar o horario de uma turma             " << endl;
+        cout << "  3 - Pedir uma troca                               " << endl;
         cout << "                                                    " << endl;
         cout << "  0 - Sair                                          " << endl;
         cout << " __________________________________________________ " << endl;
@@ -470,6 +566,50 @@ void scheduleManagement(studentSet* students, classSet* classes, courseSet* cour
 
         cin >> option;
 
+        switch (option) {
+            case '1':
+                scheduleView(students, classes);
+                break;
+            case '2':
+                scheduleView(students, classes);
+                break;
+            case '3':
+                requestsMenu(students, classes, courses);
+                break;
+            default:
+                break;
+        }
+    }
+}
 
+void requestsMenu(studentSet* students, classSet* classes, courseSet* courses) {
+    char option = '1';
+    while (option != '0') {
+        clearScreen();
+
+        cout << " __________________________________________________ " << endl;
+        cout << "  1 - Troca de turma                                " << endl;
+        cout << "  2 - Remocao de uma turma                          " << endl;
+        cout << "  3 - Atribuicao de uma turma                       " << endl;
+        cout << "                                                    " << endl;
+        cout << "  0 - Sair                                          " << endl;
+        cout << " __________________________________________________ " << endl;
+        cout << "  Opcao:";
+
+        cin >> option;
+
+        switch (option) {
+            case '1':
+                scheduleView(students, classes);
+                break;
+            case '2':
+                scheduleView(students, classes);
+                break;
+            case '3':
+
+                break;
+            default:
+                break;
+        }
     }
 }
