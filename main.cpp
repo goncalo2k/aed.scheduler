@@ -773,7 +773,7 @@ void requestProcessing(requestQueue* requests, requestVector* deniedRequests) {
     while (!requests->empty()) {
         auto request = requests->front();
 
-        const string& fileName = "../../denied_requests.csv";
+        const string& fileName = "../schedules/classes.csv";
 
         if (!request->process(fileName)) {
             deniedRequests->push_back(request);
@@ -783,4 +783,6 @@ void requestProcessing(requestQueue* requests, requestVector* deniedRequests) {
 
         requests->pop();
     }
+
+    wait();
 }

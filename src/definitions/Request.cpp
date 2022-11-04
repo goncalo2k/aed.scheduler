@@ -176,7 +176,6 @@ void Request::file(const string& fileName) {
 
     if (!file) {
         cout << "Error opening file." << endl;
-        exit(1);
     } else {
         file << this->type << "," << this->student->getNumber() << "," << this->course->getCode() << ","
              << this->initialClass->getCode() << "," << this->finalClass->getCode() << endl;
