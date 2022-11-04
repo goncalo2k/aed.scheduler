@@ -20,6 +20,7 @@ class Slot {
         float getEndTime() const;
         float getDuration() const;
         string getType() const;
+        bool compatible(const Slot* slot) const;
 
         bool operator<(const Slot& slot) const;
 };

@@ -16,7 +16,7 @@ class Class {
         set<Slot> slots;
 
     public:
-        Class(string code, string course);
+        explicit Class(string code, string course);
         string getCode() const;
         string getCourse() const;
         void addStudent(int student);

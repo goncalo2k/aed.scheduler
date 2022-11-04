@@ -19,7 +19,11 @@ class Request {
     public:
         Request(int type, Student* student, Class* initialClass, Class* finalClass, Course* course);
         Request(int type, Student* student, Class* initialClass, Course* course);
-        void process();
+        bool process(const string& fileName);
+        bool addProcess(const string& fileName);
+        bool removeProcess(const string& fileName);
+        bool swapProcess(const string& fileName);
+        void file(const string& fileName);
 };
 
 #endif //SCHEDULES_REQUEST_H

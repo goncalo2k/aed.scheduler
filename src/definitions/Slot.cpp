@@ -64,6 +64,14 @@ string Slot::getType() const {
     return this->type;
 }
 
+bool Slot::compatible(const Slot *slot) const {
+    if (this->weekday != slot->getWeekDay()) return true;
+
+    if (this->startTime >= slot->getEndTime() || this->endTime <= slot->getStartTime()) return true;
+
+    return false;
+}
+
 /**
  * @brief Slot::operator <
  * Overloaded operator < for the Slot class.
@@ -73,6 +81,3 @@ string Slot::getType() const {
 bool Slot::operator<(const Slot& slot) const {
     return this->startTime < slot.startTime;
 }
-
-
-
