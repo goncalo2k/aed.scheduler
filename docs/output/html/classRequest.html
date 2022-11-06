@@ -74,15 +74,42 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af88a5d54f31f022f0b3b0bae616b515a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequest.html#af88a5d54f31f022f0b3b0bae616b515a">Request</a> (int type, <a class="el" href="classStudent.html">Student</a> *student, <a class="el" href="classClass.html">Class</a> *initialClass, <a class="el" href="classClass.html">Class</a> *finalClass, <a class="el" href="classCourse.html">Course</a> *course)</td></tr>
-<tr class="memdesc:af88a5d54f31f022f0b3b0bae616b515a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#af88a5d54f31f022f0b3b0bae616b515a" title="Request::Request Constructor for a request of type 1 - swapping a student from one class to another.">Request::Request</a> Constructor for a request of type 1 - swapping a student from one class to another.  <a href="classRequest.html#af88a5d54f31f022f0b3b0bae616b515a">More...</a><br /></td></tr>
+<tr class="memdesc:af88a5d54f31f022f0b3b0bae616b515a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#af88a5d54f31f022f0b3b0bae616b515a" title="Request::Request Constructor for a request of type 1 - swapping a student from one class to another....">Request::Request</a> Constructor for a request of type 1 - swapping a student from one class to another. Complexity: O(5) ?  <a href="classRequest.html#af88a5d54f31f022f0b3b0bae616b515a">More...</a><br /></td></tr>
 <tr class="separator:af88a5d54f31f022f0b3b0bae616b515a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1f495240fb66d8eccbd791f5f0e6fc6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequest.html#ae1f495240fb66d8eccbd791f5f0e6fc6">Request</a> (int type, <a class="el" href="classStudent.html">Student</a> *student, <a class="el" href="classClass.html">Class</a> *initialClass, <a class="el" href="classCourse.html">Course</a> *course)</td></tr>
-<tr class="memdesc:ae1f495240fb66d8eccbd791f5f0e6fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#af88a5d54f31f022f0b3b0bae616b515a" title="Request::Request Constructor for a request of type 1 - swapping a student from one class to another.">Request::Request</a> Constructor for a request of type 2 - removing a student from a class.  <a href="classRequest.html#ae1f495240fb66d8eccbd791f5f0e6fc6">More...</a><br /></td></tr>
+<tr class="memdesc:ae1f495240fb66d8eccbd791f5f0e6fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#af88a5d54f31f022f0b3b0bae616b515a" title="Request::Request Constructor for a request of type 1 - swapping a student from one class to another....">Request::Request</a> Constructor for a request of type 2 or 3 - removing or adding a student from a class. Complexity: O(5) ?  <a href="classRequest.html#ae1f495240fb66d8eccbd791f5f0e6fc6">More...</a><br /></td></tr>
 <tr class="separator:ae1f495240fb66d8eccbd791f5f0e6fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d7a6d2c27eff9904fdbf78abe51e6b1"><td class="memItemLeft" align="right" valign="top"><a id="a8d7a6d2c27eff9904fdbf78abe51e6b1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequest.html#a8d7a6d2c27eff9904fdbf78abe51e6b1">process</a> ()</td></tr>
-<tr class="memdesc:a8d7a6d2c27eff9904fdbf78abe51e6b1"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#a8d7a6d2c27eff9904fdbf78abe51e6b1" title="Request::process This method processes the request, depending on its type.">Request::process</a> This method processes the request, depending on its type. <br /></td></tr>
-<tr class="separator:a8d7a6d2c27eff9904fdbf78abe51e6b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad60f69df625df9ff445b0bf12bbeebe1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequest.html#ad60f69df625df9ff445b0bf12bbeebe1">getType</a> () const</td></tr>
+<tr class="memdesc:ad60f69df625df9ff445b0bf12bbeebe1"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#af88a5d54f31f022f0b3b0bae616b515a" title="Request::Request Constructor for a request of type 1 - swapping a student from one class to another....">Request::Request</a> Getter for the type of the request. Complexity: O(1) ?  <a href="classRequest.html#ad60f69df625df9ff445b0bf12bbeebe1">More...</a><br /></td></tr>
+<tr class="separator:ad60f69df625df9ff445b0bf12bbeebe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e1f87510ea012f5e36b7b67c42e4292"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classStudent.html">Student</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequest.html#a6e1f87510ea012f5e36b7b67c42e4292">getStudent</a> () const</td></tr>
+<tr class="memdesc:a6e1f87510ea012f5e36b7b67c42e4292"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#a6e1f87510ea012f5e36b7b67c42e4292" title="Request::getStudent Getter for the student that made the request. Complexity: O(1) ?">Request::getStudent</a> Getter for the student that made the request. Complexity: O(1) ?  <a href="classRequest.html#a6e1f87510ea012f5e36b7b67c42e4292">More...</a><br /></td></tr>
+<tr class="separator:a6e1f87510ea012f5e36b7b67c42e4292"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a752da93e40e41957e1df0b54a84ea7e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClass.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequest.html#a752da93e40e41957e1df0b54a84ea7e3">getInitialClass</a> () const</td></tr>
+<tr class="memdesc:a752da93e40e41957e1df0b54a84ea7e3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#a752da93e40e41957e1df0b54a84ea7e3" title="Request::getInitialClass Getter for the initial class of the request. Complexity: O(1) ?">Request::getInitialClass</a> Getter for the initial class of the request. Complexity: O(1) ?  <a href="classRequest.html#a752da93e40e41957e1df0b54a84ea7e3">More...</a><br /></td></tr>
+<tr class="separator:a752da93e40e41957e1df0b54a84ea7e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf0111cda1192adeb9f5d1596429bbba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClass.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequest.html#aaf0111cda1192adeb9f5d1596429bbba">getFinalClass</a> () const</td></tr>
+<tr class="memdesc:aaf0111cda1192adeb9f5d1596429bbba"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#aaf0111cda1192adeb9f5d1596429bbba" title="Request::getFinalClass Getter for the final class of the request. Complexity: O(1) ?">Request::getFinalClass</a> Getter for the final class of the request. Complexity: O(1) ?  <a href="classRequest.html#aaf0111cda1192adeb9f5d1596429bbba">More...</a><br /></td></tr>
+<tr class="separator:aaf0111cda1192adeb9f5d1596429bbba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e819077b5698eb71081627a82052e28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCourse.html">Course</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequest.html#a1e819077b5698eb71081627a82052e28">getCourse</a> () const</td></tr>
+<tr class="memdesc:a1e819077b5698eb71081627a82052e28"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#a1e819077b5698eb71081627a82052e28" title="Request::getCourse Getter for the course of the request. Complexity: O(1) ?">Request::getCourse</a> Getter for the course of the request. Complexity: O(1) ?  <a href="classRequest.html#a1e819077b5698eb71081627a82052e28">More...</a><br /></td></tr>
+<tr class="separator:a1e819077b5698eb71081627a82052e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a464533f9ec18e6535596ef2ab887262d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequest.html#a464533f9ec18e6535596ef2ab887262d">process</a> (const string &amp;fileName)</td></tr>
+<tr class="memdesc:a464533f9ec18e6535596ef2ab887262d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#a464533f9ec18e6535596ef2ab887262d" title="Request::process Processes the requests Complexity: O(1) ?">Request::process</a> Processes the requests Complexity: O(1) ?  <a href="classRequest.html#a464533f9ec18e6535596ef2ab887262d">More...</a><br /></td></tr>
+<tr class="separator:a464533f9ec18e6535596ef2ab887262d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fce95b4c051ad283e019e341ef0f04a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequest.html#a9fce95b4c051ad283e019e341ef0f04a">addProcess</a> (const string &amp;fileName)</td></tr>
+<tr class="memdesc:a9fce95b4c051ad283e019e341ef0f04a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#a9fce95b4c051ad283e019e341ef0f04a" title="Request::addProcess Processes a request of type 1 - adding a student to a class. Complexity: O(n² x l...">Request::addProcess</a> Processes a request of type 1 - adding a student to a class. Complexity: O(n² x log n) ?  <a href="classRequest.html#a9fce95b4c051ad283e019e341ef0f04a">More...</a><br /></td></tr>
+<tr class="separator:a9fce95b4c051ad283e019e341ef0f04a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ca7b5735373627f50469d4960393661"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequest.html#a3ca7b5735373627f50469d4960393661">removeProcess</a> (const string &amp;fileName)</td></tr>
+<tr class="memdesc:a3ca7b5735373627f50469d4960393661"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#a3ca7b5735373627f50469d4960393661" title="Request::removeProcess Processes a request of type 1 - adding a student to a class....">Request::removeProcess</a> Processes a request of type 1 - adding a student to a class. Complexity O(log n)?  <a href="classRequest.html#a3ca7b5735373627f50469d4960393661">More...</a><br /></td></tr>
+<tr class="separator:a3ca7b5735373627f50469d4960393661"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a706761d1968b163067716c3e7b12846e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequest.html#a706761d1968b163067716c3e7b12846e">swapProcess</a> (const string &amp;fileName)</td></tr>
+<tr class="memdesc:a706761d1968b163067716c3e7b12846e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#a706761d1968b163067716c3e7b12846e" title="Request::swapProcess Processes a request of type 1 - adding a student to a class. Complexity: O(n² x ...">Request::swapProcess</a> Processes a request of type 1 - adding a student to a class. Complexity: O(n² x 2 x log n) ?  <a href="classRequest.html#a706761d1968b163067716c3e7b12846e">More...</a><br /></td></tr>
+<tr class="separator:a706761d1968b163067716c3e7b12846e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0868a700c7c7dc9ae801343c907667f3"><td class="memItemLeft" align="right" valign="top"><a id="a0868a700c7c7dc9ae801343c907667f3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequest.html#a0868a700c7c7dc9ae801343c907667f3">file</a> ()</td></tr>
+<tr class="memdesc:a0868a700c7c7dc9ae801343c907667f3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequest.html#a0868a700c7c7dc9ae801343c907667f3" title="Request::file Writes the request to the file. Complexity: O(1) ?">Request::file</a> Writes the request to the file. Complexity: O(1) ? <br /></td></tr>
+<tr class="separator:a0868a700c7c7dc9ae801343c907667f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af88a5d54f31f022f0b3b0bae616b515a"></a>
@@ -129,7 +156,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classRequest.html#af88a5d54f31f022f0b3b0bae616b515a" title="Request::Request Constructor for a request of type 1 - swapping a student from one class to another.">Request::Request</a> Constructor for a request of type 1 - swapping a student from one class to another. </p>
+<p><a class="el" href="classRequest.html#af88a5d54f31f022f0b3b0bae616b515a" title="Request::Request Constructor for a request of type 1 - swapping a student from one class to another....">Request::Request</a> Constructor for a request of type 1 - swapping a student from one class to another. Complexity: O(5) ? </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">type</td><td>- Type of the request - 1. </td></tr>
@@ -181,16 +208,225 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classRequest.html#af88a5d54f31f022f0b3b0bae616b515a" title="Request::Request Constructor for a request of type 1 - swapping a student from one class to another.">Request::Request</a> Constructor for a request of type 2 - removing a student from a class. </p>
+<p><a class="el" href="classRequest.html#af88a5d54f31f022f0b3b0bae616b515a" title="Request::Request Constructor for a request of type 1 - swapping a student from one class to another....">Request::Request</a> Constructor for a request of type 2 or 3 - removing or adding a student from a class. Complexity: O(5) ? </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>- Type of the request - 2. </td></tr>
-    <tr><td class="paramname">student</td><td>- The student to be removed. </td></tr>
-    <tr><td class="paramname">initialClass</td><td>- The class the student wants to be removed from. </td></tr>
-    <tr><td class="paramname">course</td><td>- The course where the removal is being made. </td></tr>
+    <tr><td class="paramname">type</td><td>- Type of the request - 2 or 3. </td></tr>
+    <tr><td class="paramname">student</td><td>- The student to be removed or added. </td></tr>
+    <tr><td class="paramname">initialClass</td><td>- The class the student wants to be removed from or added to. </td></tr>
+    <tr><td class="paramname">course</td><td>- The course where the removal or enrollment is being made. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9fce95b4c051ad283e019e341ef0f04a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fce95b4c051ad283e019e341ef0f04a">&#9670;&nbsp;</a></span>addProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Request::addProcess </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classRequest.html#a9fce95b4c051ad283e019e341ef0f04a" title="Request::addProcess Processes a request of type 1 - adding a student to a class. Complexity: O(n² x l...">Request::addProcess</a> Processes a request of type 1 - adding a student to a class. Complexity: O(n² x log n) ? </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>- Classes file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the request was processed successfully, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a1e819077b5698eb71081627a82052e28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e819077b5698eb71081627a82052e28">&#9670;&nbsp;</a></span>getCourse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCourse.html">Course</a> * Request::getCourse </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classRequest.html#a1e819077b5698eb71081627a82052e28" title="Request::getCourse Getter for the course of the request. Complexity: O(1) ?">Request::getCourse</a> Getter for the course of the request. Complexity: O(1) ? </p>
+<dl class="section return"><dt>Returns</dt><dd>The course where the request is being made. </dd></dl>
+
+</div>
+</div>
+<a id="aaf0111cda1192adeb9f5d1596429bbba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf0111cda1192adeb9f5d1596429bbba">&#9670;&nbsp;</a></span>getFinalClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classClass.html">Class</a> * Request::getFinalClass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classRequest.html#aaf0111cda1192adeb9f5d1596429bbba" title="Request::getFinalClass Getter for the final class of the request. Complexity: O(1) ?">Request::getFinalClass</a> Getter for the final class of the request. Complexity: O(1) ? </p>
+<dl class="section return"><dt>Returns</dt><dd>The class the student wants to be swapped to in tyoe 1 requests, nullptr in type 2 and 3 requests . </dd></dl>
+
+</div>
+</div>
+<a id="a752da93e40e41957e1df0b54a84ea7e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a752da93e40e41957e1df0b54a84ea7e3">&#9670;&nbsp;</a></span>getInitialClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classClass.html">Class</a> * Request::getInitialClass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classRequest.html#a752da93e40e41957e1df0b54a84ea7e3" title="Request::getInitialClass Getter for the initial class of the request. Complexity: O(1) ?">Request::getInitialClass</a> Getter for the initial class of the request. Complexity: O(1) ? </p>
+<dl class="section return"><dt>Returns</dt><dd>The class where the student is currently enrolled for type 1 requests, the class the student will be added to or removed from in type 2 and 3 requests. </dd></dl>
+
+</div>
+</div>
+<a id="a6e1f87510ea012f5e36b7b67c42e4292"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e1f87510ea012f5e36b7b67c42e4292">&#9670;&nbsp;</a></span>getStudent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classStudent.html">Student</a> * Request::getStudent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classRequest.html#a6e1f87510ea012f5e36b7b67c42e4292" title="Request::getStudent Getter for the student that made the request. Complexity: O(1) ?">Request::getStudent</a> Getter for the student that made the request. Complexity: O(1) ? </p>
+<dl class="section return"><dt>Returns</dt><dd>The student that made the request. </dd></dl>
+
+</div>
+</div>
+<a id="ad60f69df625df9ff445b0bf12bbeebe1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad60f69df625df9ff445b0bf12bbeebe1">&#9670;&nbsp;</a></span>getType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Request::getType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classRequest.html#af88a5d54f31f022f0b3b0bae616b515a" title="Request::Request Constructor for a request of type 1 - swapping a student from one class to another....">Request::Request</a> Getter for the type of the request. Complexity: O(1) ? </p>
+<dl class="section return"><dt>Returns</dt><dd>The request type. </dd></dl>
+
+</div>
+</div>
+<a id="a464533f9ec18e6535596ef2ab887262d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a464533f9ec18e6535596ef2ab887262d">&#9670;&nbsp;</a></span>process()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Request::process </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classRequest.html#a464533f9ec18e6535596ef2ab887262d" title="Request::process Processes the requests Complexity: O(1) ?">Request::process</a> Processes the requests Complexity: O(1) ? </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>- Classes file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the request was processed successfully, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a3ca7b5735373627f50469d4960393661"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ca7b5735373627f50469d4960393661">&#9670;&nbsp;</a></span>removeProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Request::removeProcess </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classRequest.html#a3ca7b5735373627f50469d4960393661" title="Request::removeProcess Processes a request of type 1 - adding a student to a class....">Request::removeProcess</a> Processes a request of type 1 - adding a student to a class. Complexity O(log n)? </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>- Classes file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the request was processed successfully, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a706761d1968b163067716c3e7b12846e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a706761d1968b163067716c3e7b12846e">&#9670;&nbsp;</a></span>swapProcess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Request::swapProcess </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classRequest.html#a706761d1968b163067716c3e7b12846e" title="Request::swapProcess Processes a request of type 1 - adding a student to a class. Complexity: O(n² x ...">Request::swapProcess</a> Processes a request of type 1 - adding a student to a class. Complexity: O(n² x 2 x log n) ? </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>- Classes file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the request was processed successfully, false otherwise. </dd></dl>
 
 </div>
 </div>

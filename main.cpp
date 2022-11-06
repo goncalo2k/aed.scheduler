@@ -72,7 +72,12 @@ void readSwapRequest(requestQueue* requests, studentSet* students, classSet* cla
 void requestProcessing(requestQueue* requests, requestVector* deniedRequests);
 void listDeniedRequests(requestVector* deniedRequests);
 
-
+/**
+ * @brief main
+ * Reads classes, courses, students and denied requests from files.
+ * Shows the main menu.
+ * @return 0
+ */
 int main() {
     studentSet students;
     classSet classes;
@@ -137,6 +142,7 @@ int main() {
 /**
  * @brief readStudents
  * Reads the students from the file "students_classes.csv" and adds them to the respective set, as well as their classes and the courses they're enrolled in.
+ * Complexity: O(n x log n)
  * @param students - Set of students - read from the files.
  * @param classes - Set of classes read from the files.
  * @param courses - Set of courses read from the files.
@@ -188,6 +194,7 @@ void readStudents(studentSet* students, classSet* classes, courseSet* courses) {
 /**
  * @brief readClasses
  * Reads the classes from the file "classes.csv" and adds them to the respective  set.
+ * Complexity: O(n x log n)
  * @param classes - Set of classes read from the files.
  */
 void readClasses(classSet* classes) {
@@ -231,6 +238,7 @@ void readClasses(classSet* classes) {
 /**
  * @brief readCourses
  * Reads the courses from the file "classes_per_uc.csv" and adds them to the respective set.
+ * Complexity: O(n x log n)
  * @param courses - Set of courses read from the files.
  */
 void readCourses(courseSet* courses) {
@@ -259,6 +267,12 @@ void readCourses(courseSet* courses) {
     }
 }
 
+/**
+ * @brief readDeniedRequests
+ * Reads the denied requests from the file "denied_requests.csv" and adds them to the respective vector.
+ * Complexity: O(n)
+ * @param deniedRequests - Vector of denied requests read from the files.
+ */
 void readDeniedRequests(requestVector* deniedRequests) {
     ifstream file("../archive/denied_requests.csv");
 
@@ -290,6 +304,12 @@ void readDeniedRequests(requestVector* deniedRequests) {
     }
 }
 
+/**
+ * @brief listDeniedRequests
+ * Lists the requests from the deniedRequests vector.
+ * Complexity: O(n)
+ * @param requests - Vector of requests read from the files.
+ */
 void listDeniedRequests(requestVector* deniedRequests) {
     cout << " __________________________________________________ " << endl;
     cout << "  Denied requests:                                  " << endl;
@@ -325,6 +345,7 @@ void listDeniedRequests(requestVector* deniedRequests) {
 
 /**
  * @brief clearScreen
+ * Complexity: O(1)
  * Clears the screen.
  */
 void clearScreen() {
@@ -333,6 +354,7 @@ void clearScreen() {
 
 /**
  * @brief wait
+ * Complexity: O(3)
  * Waits for the user to press any key.
  */
 void wait() {
@@ -344,6 +366,7 @@ void wait() {
 /**
  * @brief listMenu
  * Displays the list menu.
+ * Complexity: O(n)
  * @param students - Set of students read from the files.
  * @param classes - Set of classes read from the files.
  * @param courses - Set of courses read from the files.
@@ -387,6 +410,7 @@ void listMenu(studentSet* students, classSet* classes, courseSet* courses) {
 /**
  * @brief studentsFilters
  * Handles all the users' options when listing students.
+ * Complexity: O(n) or O(n²)
  * @param students - Set of students read from the files.
  */
 void studentsFilters(studentSet* students) {
@@ -425,13 +449,16 @@ void studentsFilters(studentSet* students) {
 /**
  * @listStudents
  * Lists all the students in the set, correctly filtered, according to studentFilters.
+ * Complexity: O(n²) or O(n)?
  * @param students - Set of students read from the files.
  * @param op1 - Option 1 - manages how the students will be displayed: either by name or by number.
  * @param op2 - Option 2 - manages the order of the students: either ascending or descending.
  * @param op3 - Option 3 - manages whether the classes of each student will be displayed or not.
  * @param op4 - Option 4 - manages whether all the students will be displayed or just a part of them.
+ * @param op5 - Option 5 - manages whether all the students will be displayed or just students enrolled in more than n courses or less than n courses.
  * @param min - Lower bound of the interval for option 4.
  * @param max - Upper bound of the interval for option 4.
+ * @param n - Number of classes for option 5.
  */
 void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int op5, int min, int max, int n) {
     clearScreen();
@@ -492,6 +519,7 @@ void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int 
 /**
  * @brief classesFilters
  * Handles all the users' options when listing classes.
+ * Complexity: O(n) or O(n²)
  * @param classes - Set of classes read from the files.
  * @param students - Set of students read from the files.
  */
@@ -517,6 +545,7 @@ void classesFilters(classSet* classes, studentSet* students) {
 /**
  * @brief listClasses
  * Lists all the classes in the set, correctly filtered, according to classFilters.
+ * Complexity: O(n²) or O(n)?
  * @param classes - Set of classes read from the files.
  * @param students - Set of students read from the files.
  * @param op1 - Option 1 - manages how the classes will be displayed: either by code or by occupation.
@@ -561,8 +590,9 @@ void listClasses(classSet* classes, studentSet* students, int op1, int op2, int 
 }
 
 /**
- * courseFilters
+ * @brief courseFilters
  * Handles all the users' options when listing courses.
+ * Complexity: O(n) or O(n²)
  * @param courses - Set of courses read from the files.
  * @param students - Set of students read from the files.
  */
@@ -590,6 +620,7 @@ void coursesFilters(courseSet *courses, studentSet *students) {
 /**
  * @brief listCourses
  * Lists all the courses in the set, correctly filtered, according to courseFilters.
+ * Complexity: O(n²) or O(n)?
  * @param courses - Set of courses read from the files.
  * @param students - Set of students read from the files.
  * @param op1 - Option 1 - manages the order of the courses: either ascending or descending.
@@ -633,6 +664,13 @@ void listCourses(courseSet* courses, studentSet* students, int op1, int op2, int
     }
 }
 
+/**
+ * @brief scheduleView
+ * Shows the schedule menu.
+ * Complexity: O(n)
+ * @param students - Set of students read from the files.
+ * @param classes - Set of classes read from the files.
+ */
 void scheduleView(studentSet* students, classSet* classes) {
     char option = '1';
     while (option != '0') {
@@ -666,8 +704,9 @@ void scheduleView(studentSet* students, classSet* classes) {
 }
 
 /**
- * @brief scheduleFilters
- *
+ * @brief studentSchedule
+ * Generates the schedule of a student.
+ * Complexity: O(n²)
  * @param students
  * @param classes
  */
@@ -698,6 +737,12 @@ void studentSchedule(studentSet* students, classSet* classes) {
     wait();
 }
 
+/**
+ * @brief classSchedule
+ * Generates the schedule of a class.
+ * Complexity: O(n²)
+ * @param classes - Set of classes read from the files.
+ */
 void classSchedule(classSet* classes) {
     clearScreen();
 
@@ -723,6 +768,15 @@ void classSchedule(classSet* classes) {
     wait();
 }
 
+/**
+ * @brief requestsMenu
+ * Shows the requests menu.
+ * Complexity: O(n)
+ * @param requests - Set of requests read from the files.
+ * @param students - Set of students read from the files.
+ * @param classes - Set of classes read from the files.
+ * @param courses - Set of courses read from the files.
+ */
 void requestsMenu(requestQueue* requests, studentSet* students, classSet* classes, courseSet* courses) {
     char option = '1';
     while (option != '0') {
@@ -759,6 +813,15 @@ void requestsMenu(requestQueue* requests, studentSet* students, classSet* classe
     }
 }
 
+/**
+ * @brief readEnrollRequest
+ * Reads the information of a new enroll request.
+ * Complexity: O(n log n)
+ * @param requests - Set of requests read from the files.
+ * @param students - Set of students read from the files.
+ * @param classes - Set of classes read from the files.
+ * @param courses - Set of courses read from the files.
+ */
 void readEnrollRequest(requestQueue* requests, studentSet* students, classSet* classes, courseSet* courses) {
     clearScreen();
 
@@ -787,6 +850,15 @@ void readEnrollRequest(requestQueue* requests, studentSet* students, classSet* c
     wait();
 }
 
+/**
+ * @brief readLeaveRequest
+ * Reads the information of a new leave request.
+ * Complexity: O(n log n)
+ * @param requests - Set of requests read from the files.
+ * @param students - Set of students read from the files.
+ * @param classes - Set of classes read from the files.
+ * @param courses - Set of courses read from the files.
+ */
 void readLeaveRequest(requestQueue* requests, studentSet* students, classSet* classes, courseSet* courses) {
     clearScreen();
 
@@ -815,6 +887,15 @@ void readLeaveRequest(requestQueue* requests, studentSet* students, classSet* cl
     wait();
 }
 
+/**
+ * @brief readSwapRequest
+ * Reads the information of a new swap request.
+ * Complexity: O(n log n)
+ * @param requests - Set of requests read from the files.
+ * @param students - Set of students read from the files.
+ * @param classes - Set of classes read from the files.
+ * @param courses - Set of courses read from the files.
+ */
 void readSwapRequest(requestQueue* requests, studentSet* students, classSet* classes, courseSet* courses) {
     clearScreen();
 
@@ -848,6 +929,13 @@ void readSwapRequest(requestQueue* requests, studentSet* students, classSet* cla
     wait();
 }
 
+/**
+ * @brief requestProcessing
+ * Handles the request processing.
+ * Complexity: O(n)
+ * @param requests - Set of requests read from the files.
+ * @param deniedRequests - Set of students read from the files.
+ */
 void requestProcessing(requestQueue* requests, requestVector* deniedRequests) {
     clearScreen();
 

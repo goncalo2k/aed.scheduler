@@ -5,6 +5,7 @@
 /**
  * @brief Student::Student
  * This is the Student constructor. It receives the student's number and the student's name. Considers that a student has no schedule or classes associated to it initially.
+ * Complexity: O(2)
  * @param number - The student's number.
  * @param name - The student's name.
  */
@@ -16,6 +17,7 @@ Student::Student(int number, string name) {
 /**
  * @brief Student::getNumber
  * Getter for the student's number.
+ * Complexity: O(1)
  * @return The student's number.
  */
 int Student::getNumber() const {
@@ -25,6 +27,7 @@ int Student::getNumber() const {
 /**
  * @brief Student::getName
  * Getter for the student's name.
+ * Complexity: O(1)
  * @return The student's name.
  */
 string Student::getName() const{
@@ -34,6 +37,7 @@ string Student::getName() const{
 /**
  * @brief Student::addClass
  * Adds a class to the student's classes.
+ * complexity: O(1)
  * @param cl - The class to be added.
  */
 void Student::addClass(const pair<string, string>& cl) {
@@ -43,6 +47,7 @@ void Student::addClass(const pair<string, string>& cl) {
 /**
  * @brief Student::removeClass
  * Removes a class from the student's classes.
+ * Complexity: O(log n)
  * @param cl - The class to be removed.
  */
 void Student::removeClass(const pair<string, string>& cl) {
@@ -52,6 +57,7 @@ void Student::removeClass(const pair<string, string>& cl) {
 /**
  * @brief Student::getClasses
  * Getter for the student's classes.
+ * Complexity: O(1)
  * @return The student's classes.
  */
 set<pair<string, string>> Student::getClasses() const {
@@ -61,6 +67,7 @@ set<pair<string, string>> Student::getClasses() const {
 /**
  * @brief Student::getSchedule
  * Getter for the student's schedule.
+ * Complexity: O(1)
  * @return The student's schedule.
  */
 Schedule* Student::getSchedule() const {
@@ -70,6 +77,7 @@ Schedule* Student::getSchedule() const {
 /**
  * @brief Student::setSchedule
  * Setter for the student's schedule.
+ * Complexity: O(1)
  * @param schedule - The student's schedule.
  */
 void Student::setSchedule(Schedule* schedule) {

@@ -5,6 +5,7 @@
 /**
  * @brief Slot::Slot
  * Constructor for the Slot class.
+ * Complexity: O(5)
  * @param weekday - The day of the week the class represented by the slot is on.
  * @param startTime - The time the class represented by the slot starts.
  * @param endTime - The time the class represented by the slot ends.
@@ -22,6 +23,7 @@ Slot::Slot(string weekday, float startTime, float endTime, float duration, strin
 /**
  * @brief Slot::getWeekDay
  * Getter for the weekday the slot is in.
+ * Complexity: O(1)
  * @return The weekday the slot is in.
  */
 string Slot::getWeekDay() const {
@@ -31,6 +33,7 @@ string Slot::getWeekDay() const {
 /**
  * @brief Slot::getStartTime
  * Getter for the slot's start time.
+ * Complexity: O(1)
  * @return The slot's start time.
  */
 float Slot::getStartTime() const {
@@ -40,6 +43,7 @@ float Slot::getStartTime() const {
 /**
  * @brief Slot::getEndTime
  * Getter for the slot's end time.
+ * Complexity: O(1)
  * @return The slot's end time.
  */
 float Slot::getEndTime() const {
@@ -49,6 +53,7 @@ float Slot::getEndTime() const {
 /**
  * @brief Slot::getDuration
  * Getter for the slot's duration.
+ * Complexity: O(1)
  * @return The slot's duration.
  */
 float Slot::getDuration() const {
@@ -58,12 +63,19 @@ float Slot::getDuration() const {
 /**
  * @brief Slot::getType
  * Getter for the slot's type.
+ * Complexity: O(1)
  * @return The slot's type.
  */
 string Slot::getType() const {
     return this->type;
 }
 
+/**
+ * @brief Slot::compatible
+ * Checks if the slot is compatible with another slot.
+ * Complexity: O(2) ?
+ * @param weekday - The new weekday.
+ */
 bool Slot::compatible(const Slot *slot) const {
     if (this->weekday != slot->getWeekDay()) return true;
 
@@ -75,6 +87,7 @@ bool Slot::compatible(const Slot *slot) const {
 /**
  * @brief Slot::operator <
  * Overloaded operator < for the Slot class.
+ * Complexity: O(1)
  * @param slot - The slot to compare to.
  * @return True if the slot is before the other slot, false otherwise.
  */

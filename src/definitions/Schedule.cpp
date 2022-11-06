@@ -5,6 +5,7 @@
 /**
  * @brief Schedule::Schedule
  * Constructor of the Schedule class
+ * Complexity: O(1)
  * @param slots - The slots of the schedule.
  */
 Schedule::Schedule(set<Slot> slots) {
@@ -14,6 +15,7 @@ Schedule::Schedule(set<Slot> slots) {
 /**
  * @brief Schedule::addSlot
  * This method adds a slot to the schedule.
+ * Complexity: O(1)
  * @param slot - The slot to be added to the schedule.
  */
 void Schedule::addSlot(const Slot& slot) {
@@ -23,6 +25,7 @@ void Schedule::addSlot(const Slot& slot) {
 /**
  * @brief Schedule::removeSlot
  * This method removes a slot from the schedule.
+ * Complexity: O(log n)
  * @param slot - The slot to be removed from the schedule.
  */
 void Schedule::removeSlot(const Slot& slot) {
@@ -32,6 +35,7 @@ void Schedule::removeSlot(const Slot& slot) {
 /**
  * @brief Schedule::getSlots
  * Getter for the schedule's slots.
+ * Complexity: O(1)
  * @return The schedule's slots.
  */
 set<Slot> Schedule::getSlots() const {
@@ -41,6 +45,7 @@ set<Slot> Schedule::getSlots() const {
 /**
  * @brief Schedule::printSchedule
  * This method prints the schedule.
+ * Complexity: O(n²)
  */
 void Schedule::printSchedule() const {
     vector<string> v = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
