@@ -19,7 +19,7 @@ Request::Request(int type, Student* student, Class* initialClass, Class* finalCl
 
 /**
  * @brief Request::Request
- * Constructor for a request of type 2 - removing a student from a class.
+ * Constructor for a request of type 2 - removing or adding a student from a class.
  * @param type - Type of the request - 2.
  * @param student - The student to be removed.
  * @param initialClass - The class the student wants to be removed from.
@@ -33,6 +33,25 @@ Request::Request(int type, Student* student, Class* initialClass, Course* course
     this->course = course;
 }
 
+int Request::getType() const {
+    return this->type;
+}
+
+Student* Request::getStudent() const {
+    return this->student;
+}
+
+Class* Request::getInitialClass() const {
+    return this->initialClass;
+}
+
+Class* Request::getFinalClass() const {
+    return this->finalClass;
+}
+
+Course* Request::getCourse() const {
+    return this->course;
+}
 /**
  * @brief Request::process
  * This method processes the request, depending on its type.
@@ -56,21 +75,21 @@ bool Request::process(const string& fileName) {
 }
 
 bool Request::addProcess(const std::string &fileName) {
-    if (this->student->getClasses().find(make_pair(course->getCode(), initialClass->getCode())) != this->student->getClasses().end()) {
-        cout << "Student " << this->student->getNumber() << " is already enrolled in class " << this->initialClass->getCode() << "." << endl;
-        this->file(fileName);
+    if (this->student->getClasses().find(make_pair(this->course->getCode(), this->initialClass->getCode())) != this->student->getClasses().end()) {
+        cout << "Student " << this->student->getNumber() << " is either already enrolled in class " << this->initialClass->getCode() << " or in another class. On the later case, try a swap." << endl;
+        this->file();
         return false;
     }
 
     if (this->student->getClasses().size() >= 6) {
         cout << "Student " << this->student->getNumber() << " is already enrolled in 6 classes." << endl;
-        this->file(fileName);
+        this->file();
         return false;
     }
 
     if (this->initialClass->getStudents().size() >= 30) {
         cout << "Class " << this->initialClass->getCode() << " is full." << endl;
-        this->file(fileName);
+        this->file();
         return false;
     }
 
@@ -87,7 +106,7 @@ bool Request::addProcess(const std::string &fileName) {
 
     if (!isPossible) {
         cout << "Student " << this->student->getNumber() << " has a schedule conflict with class " << this->initialClass->getCode() << "." << endl;
-        this->file(fileName);
+        this->file();
         return false;
     }
 
@@ -100,9 +119,10 @@ bool Request::addProcess(const std::string &fileName) {
 }
 
 bool Request::removeProcess(const std::string &fileName) {
-    if (this->student->getClasses().find(make_pair(course->getCode(), initialClass->getCode())) == this->student->getClasses().end()) {
+    if (this->student->getClasses().find(make_pair(this->course->getCode(), this->initialClass->getCode())) == this->student->getClasses().end()) {
         cout << "Student " << this->student->getNumber() << " is not enrolled in class " << this->initialClass->getCode() << "." << endl;
-        this->file(fileName);
+        this->file();
+
         return false;
     }
 
@@ -118,25 +138,25 @@ bool Request::removeProcess(const std::string &fileName) {
 bool Request::swapProcess(const std::string &fileName) {
     if (this->student->getClasses().find(make_pair(course->getCode(), initialClass->getCode())) == this->student->getClasses().end()) {
         cout << "Student " << this->student->getNumber() << " is not enrolled in class " << this->initialClass->getCode() << "." << endl;
-        this->file(fileName);
+        this->file();
         return false;
     }
 
     if (this->student->getClasses().find(make_pair(course->getCode(), finalClass->getCode())) != this->student->getClasses().end()) {
         cout << "Student " << this->student->getNumber() << " is already enrolled in class " << this->finalClass->getCode() << "." << endl;
-        this->file(fileName);
+        this->file();
         return false;
     }
 
     if (this->finalClass->getStudents().size() >= 30) {
         cout << "Class " << this->finalClass->getCode() << " is full." << endl;
-        this->file(fileName);
+        this->file();
         return false;
     }
 
     if (this->student->getClasses().size() >= 6) {
         cout << "Student " << this->student->getNumber() << " is already enrolled in 6 classes." << endl;
-        this->file(fileName);
+        this->file();
         return false;
     }
 
@@ -154,7 +174,7 @@ bool Request::swapProcess(const std::string &fileName) {
 
     if (!isPossible) {
         cout << "Student " << this->student->getNumber() << " has a schedule conflict with class " << this->finalClass->getCode() << "." << endl;
-        this->file(fileName);
+        this->file();
         return false;
     }
 
@@ -169,16 +189,23 @@ bool Request::swapProcess(const std::string &fileName) {
     return true;
 }
 
-void Request::file(const string& fileName) {
+void Request::file() {
     ofstream file;
 
-    file.open(fileName);
+    file.open("..//archive//denied_requests.csv");
 
     if (!file) {
         cout << "Error opening file." << endl;
     } else {
-        file << this->type << "," << this->student->getNumber() << "," << this->course->getCode() << ","
-             << this->initialClass->getCode() << "," << this->finalClass->getCode() << endl;
+        if (this->type == 3) {
+            file << this->type << "," << this->student->getNumber() << "," << this->course->getCode() << ","
+                 << this->initialClass->getCode() << "," << this->finalClass->getCode() << endl;
+        }
+        else {
+            file << this->type << "," << this->student->getNumber() << "," << this->course->getCode() << ","
+                 << this->initialClass->getCode() << "XXXXXXX" << this->initialClass->getCode() << endl;
+            ;
+        }
     }
 
     file.close();

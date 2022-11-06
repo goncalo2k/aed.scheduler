@@ -13,6 +13,14 @@ Class::Class(string code, string course) {
     this->course = std::move(course);
 }
 
+void Class::setCode(const string& code) {
+    this->code = code;
+}
+
+void Class::setCourse(const string& course) {
+    this->course = course;
+};
+
 /**
  * @brief Class::getCode
  * Getter for the class code.

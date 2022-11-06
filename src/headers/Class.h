@@ -25,6 +25,8 @@ class Class {
         void addSlot(const Slot& slot);
         void removeSlot(const Slot& slot);
         set<Slot> getSlots() const;
+        void setCode(const string& code);
+        void setCourse(const string& course);
 };
 
 #endif //SCHEDULES_CLASS_H

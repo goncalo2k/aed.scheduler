@@ -52,11 +52,12 @@ typedef vector<Request*> requestVector;
 void readStudents(studentSet* students, classSet* classes, courseSet* courses);
 void readClasses(classSet* classes);
 void readCourses(courseSet* courses);
+void readDeniedRequests(requestVector* deniedRequests);
 void clearScreen();
 void wait();
 void listMenu(studentSet* students, classSet* classes, courseSet* courses);
 void studentsFilters(studentSet* students);
-void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int min, int max);
+void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int op5, int min, int max, int n);
 void classesFilters(classSet* classes, studentSet* students);
 void listClasses(classSet* classes, studentSet* students, int op1, int op2, int op3);
 void coursesFilters(courseSet* courses, studentSet* students);
@@ -69,6 +70,7 @@ void readEnrollRequest(requestQueue* requests, studentSet* students, classSet* c
 void readLeaveRequest(requestQueue* requests, studentSet* students, classSet* classes, courseSet* courses);
 void readSwapRequest(requestQueue* requests, studentSet* students, classSet* classes, courseSet* courses);
 void requestProcessing(requestQueue* requests, requestVector* deniedRequests);
+void listDeniedRequests(requestVector* deniedRequests);
 
 
 int main() {
@@ -83,7 +85,10 @@ int main() {
     requestQueue requests;
     requestVector deniedRequests;
 
+    readDeniedRequests(&deniedRequests);
+
     char option = '1';
+
     while (option != '0') {
         clearScreen();
 
@@ -93,7 +98,7 @@ int main() {
         cout << "  3 - Request submission                            " << endl;
         cout << "                                                    " << endl;
         cout << "  4 - Request processing                            " << endl;
-        cout << "                                                    " << endl;
+        cout << "  5 - Archived requests                             " << endl;
         cout << "  0 - Exit                                          " << endl;
         cout << " __________________________________________________ " << endl;
         cout << "  Option:";
@@ -112,6 +117,9 @@ int main() {
                 break;
             case '4':
                 requestProcessing(&requests, &deniedRequests);
+                break;
+            case '5':
+                listDeniedRequests(&deniedRequests);
                 break;
             case '0':
                 break;
@@ -251,6 +259,70 @@ void readCourses(courseSet* courses) {
     }
 }
 
+void readDeniedRequests(requestVector* deniedRequests) {
+    ifstream file("../archive/denied_requests.csv");
+
+    string line;
+
+    while (getline(file, line)) {
+        istringstream iss(line);
+
+        int type;
+        int studentNumber;
+        string courseS;
+        string initialClassCode;
+        string finalClassCode;
+
+        iss >> type; iss.ignore();
+        iss >> studentNumber; iss.ignore();
+        getline(iss, courseS, ',');
+        getline(iss, initialClassCode, ',');
+        getline(iss, finalClassCode, ',');
+
+        auto finalClass = new Class(finalClassCode, courseS);
+        auto student = new Student(studentNumber, "");
+        auto initialClass = new Class(initialClassCode, courseS);
+        auto course = new Course(courseS);
+
+        auto request = (type == 3) ? new Request(type, student, initialClass, finalClass, course) : new Request(type, student, initialClass, course);
+
+        deniedRequests->push_back(request);
+    }
+}
+
+void listDeniedRequests(requestVector* deniedRequests) {
+    cout << " __________________________________________________ " << endl;
+    cout << "  Denied requests:                                  " << endl;
+    cout << "                                                    " << endl;
+
+    for (auto request : *deniedRequests) {
+        int condition = request->getType();
+        switch (condition) {
+            case 1:
+                cout << "Student " << request->getStudent()->getNumber() << " " << request->getStudent()->getName()
+                    << " requested to join class " << request->getInitialClass()->getCode() << " from the course " << request->getCourse()->getCode() << endl;
+                break;
+                //2 leave 3 swap
+            case 2:
+                cout << "Student " << request->getStudent()->getNumber() << " " << request->getStudent()->getName()
+                    << " requested to leave class " << request->getInitialClass()->getCode() << " from the course " << request->getCourse()->getCode() << endl;
+                break;
+            case 3:
+                cout << "Student " << request->getStudent()->getNumber() << " " << request->getStudent()->getName()
+                     << " requested to swap from class " << request->getInitialClass()->getCode() << " from class " <<
+                        request->getFinalClass()->getCode() <<" from the course " << request->getCourse()->getCode() << endl;
+                break;
+            default:
+                break;
+        }
+        cout << "  " << endl;
+    }
+
+    cout << " __________________________________________________ " << endl;
+    wait();
+}
+
+
 /**
  * @brief clearScreen
  * Clears the screen.
@@ -320,13 +392,18 @@ void listMenu(studentSet* students, classSet* classes, courseSet* courses) {
 void studentsFilters(studentSet* students) {
     clearScreen();
 
-    int op1 = -1, op2 = -1, op3 = -1, op4 = -1;
-    int min, max;
+    int op1 = -1, op2 = -1, op3 = -1, op4 = -1, op5 = -1;
+    int min, max, n;
+
+    cout << "Show: all students (0) | students in more than n classes (1) | students in less than n classes (2)" << endl;
+    while (op5 != 0 && op5 != 1 && op5 != 2) { cout << "Option:"; cin >> op5; cout << endl; }
+
+    if (op5 == 1 || op5 == 2) {cout << "n:"; cin >> n; cout << endl;}
 
     cout << "Order by: number (0) | name (1)" << endl;
     while (op1 != 0 && op1 != 1) { cout << "Option:"; cin >> op1; cout << endl; }
 
-    cout << "Filter by: none (0) | number (1)" << endl;
+    cout << "Filter by: none (0) | range (1)" << endl;
     while (op4 != 0 && op4 != 1) { cout << "Option:"; cin >> op4; cout << endl; }
     if (op4 == 1) {
         cout << "Range:" << endl;
@@ -340,7 +417,7 @@ void studentsFilters(studentSet* students) {
     cout << "Show student's classes: no (0) | yes (1)" << endl;
     while (op3 != 0 && op3 != 1) { cout << "Option:"; cin >> op3; cout << endl; }
 
-    listStudents(students, op1, op2, op3, op4, min, max);
+    listStudents(students, op1, op2, op3, op4, op5, min, max, n);
 
     wait();
 }
@@ -356,12 +433,22 @@ void studentsFilters(studentSet* students) {
  * @param min - Lower bound of the interval for option 4.
  * @param max - Upper bound of the interval for option 4.
  */
-void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int min, int max) {
+void listStudents(studentSet* students, int op1, int op2, int op3, int op4, int op5, int min, int max, int n) {
     clearScreen();
 
     vector<Student*> v;
 
-    if (op4 == 1) {
+    if(op5 == 1) {
+        for (auto student: *students) {
+            if (student->getClasses().size() > n) {v.push_back(student);}
+        }
+    }
+    else if(op5 == 2) {
+        for (auto student : *students) {
+            if (student->getClasses().size() < n) {v.push_back(student);}
+        }
+    }
+    else if (op4 == 1) {
         for (auto student : *students) {
             if (student->getNumber() >= min && student->getNumber() <= max) {
                 v.push_back(student);
