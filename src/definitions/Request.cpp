@@ -3,7 +3,7 @@
 /**
  * @brief Request::Request
  * Constructor for a request of type 1 - swapping a student from one class to another.
- * Complexity: O(5) ?
+ * Complexity: O(1)
  * @param type - Type of the request - 1.
  * @param student - The student to be swapped.
  * @param initialClass - The class the student is currently in.
@@ -21,7 +21,7 @@ Request::Request(int type, Student* student, Class* initialClass, Class* finalCl
 /**
  * @brief Request::Request
  * Constructor for a request of type 2 or 3 - removing or adding a student from a class.
- * Complexity: O(5) ?
+ * Complexity: O(1)
  * @param type - Type of the request - 2 or 3.
  * @param student - The student to be removed or added.
  * @param initialClass - The class the student wants to be removed from or added to.
@@ -38,7 +38,7 @@ Request::Request(int type, Student* student, Class* initialClass, Course* course
 /**
  * @brief Request::Request
  * Getter for the type of the request.
- * Complexity: O(1) ?
+ * Complexity: O(1)
  * @return The request type.
  */
 int Request::getType() const {
@@ -49,7 +49,7 @@ int Request::getType() const {
 /**
  * @brief Request::getStudent
  * Getter for the student that made the request.
- * Complexity: O(1) ?
+ * Complexity: O(1)
  * @return The student that made the request.
  */
 Student* Request::getStudent() const {
@@ -59,7 +59,7 @@ Student* Request::getStudent() const {
 /**
  * @brief Request::getInitialClass
  * Getter for the initial class of the request.
-  * Complexity: O(1) ?
+  * Complexity: O(1)
  * @return The class where the student is currently enrolled for type 1 requests, the class the student will be added to or removed from in type 2 and 3 requests.
  */
 Class* Request::getInitialClass() const {
@@ -69,8 +69,8 @@ Class* Request::getInitialClass() const {
 /**
  * @brief Request::getFinalClass
  * Getter for the final class of the request.
- * Complexity: O(1) ?
- * @return The class the student wants to be swapped to in tyoe 1 requests, nullptr in type 2 and 3 requests .
+ * Complexity: O(1)
+ * @return The class the student wants to be swapped to in type 1 requests, nullptr in type 2 and 3 requests .
  */
 Class* Request::getFinalClass() const {
     return this->finalClass;
@@ -79,7 +79,7 @@ Class* Request::getFinalClass() const {
 /**
  * @brief Request::getCourse
  * Getter for the course of the request.
- * Complexity: O(1) ?
+ * Complexity: O(1)
  * @return The course where the request is being made.
  */
 Course* Request::getCourse() const {
@@ -89,7 +89,7 @@ Course* Request::getCourse() const {
 /**
  * @brief Request::process
  * Processes the requests
- * Complexity: O(1) ?
+ * Complexity: O(1)
  * @param fileName - Classes file.
  * @return True if the request was processed successfully, false otherwise.
  */
@@ -114,7 +114,7 @@ bool Request::process(const string& fileName) {
 /**
  * @brief Request::addProcess
  * Processes a request of type 1 - adding a student to a class.
- * Complexity: O(n² x log n) ?
+ * Complexity: O(n² x log n)
  * @param fileName - Classes file.
  * @return True if the request was processed successfully, false otherwise.
  */
@@ -181,9 +181,9 @@ bool Request::removeProcess(const std::string &fileName) {
         this->student->removeClass(make_pair(initialClass->getCourse(), initialClass->getCode()));
         initialClass->removeStudent(this->student->getNumber());
         course->removeStudent(this->student->getNumber());
-    }
 
-    return true;
+        return true;
+    }
 }
 
 /**
@@ -200,11 +200,16 @@ bool Request::swapProcess(const std::string &fileName) {
         return false;
     }
 
-    if (this->student->getClasses().find(make_pair(course->getCode(), finalClass->getCode())) != this->student->getClasses().end()) {
+    auto it = find_if(this->student->getClasses().begin(), this->student->getClasses().end(), [&](const pair<string, string>& c) {
+        return c.first == this->course->getCode() && c.first == this->finalClass->getCode(); });
+
+    if (it != this->student->getClasses().end()) {
         cout << "Student " << this->student->getNumber() << " is already enrolled in class " << this->finalClass->getCode() << "." << endl;
-        this->file();
+        //this->file();
         return false;
     }
+
+
 
     if (this->finalClass->getStudents().size() >= 30) {
         cout << "Class " << this->finalClass->getCode() << " is full." << endl;
@@ -240,8 +245,8 @@ bool Request::swapProcess(const std::string &fileName) {
     initialClass->removeStudent(this->student->getNumber());
     course->removeStudent(this->student->getNumber());
 
-    this->student->addClass(make_pair(initialClass->getCourse(), initialClass->getCode()));
-    initialClass->addStudent(this->student->getNumber());
+    this->student->addClass(make_pair(finalClass->getCourse(), finalClass->getCode()));
+    finalClass->addStudent(this->student->getNumber());
     course->addStudent(this->student->getNumber());
 
     return true;

@@ -279,7 +279,7 @@ void MenuHandler::readSwapRequest(requestQueue* requests, studentSet* students, 
     auto it3 = classes->find(new Class(finalClass, courseCode));
     auto it4 = courses->find(new Course(courseCode));
 
-    requests->push(new Request(3, (*it1), (*it2), (*it3), (*it4)));
+    requests->push(new Request(3, *it1, *it2, *it3, *it4));
 
     cout << "Request submitted!" << endl;
     wait();
@@ -293,7 +293,7 @@ void MenuHandler::readSwapRequest(requestQueue* requests, studentSet* students, 
  */
 void MenuHandler::listDeniedRequests(requestVector* deniedRequests) {
     cout << " __________________________________________________ " << endl;
-    cout << "  Denied requests:                                  " << endl;
+    cout << "Denied requests:                                  " << endl;
     cout << "                                                    " << endl;
 
     for (auto request : *deniedRequests) {
@@ -309,8 +309,8 @@ void MenuHandler::listDeniedRequests(requestVector* deniedRequests) {
                      << " requested to leave class " << request->getInitialClass()->getCode() << " from the course " << request->getCourse()->getCode() << endl;
                 break;
             case 3:
-                cout << "Student " << request->getStudent()->getNumber() << " " << request->getStudent()->getName()
-                     << " requested to swap from class " << request->getInitialClass()->getCode() << " from class " <<
+                cout << "Student " << request->getStudent()->getNumber()
+                     << " requested to swap from class " << request->getInitialClass()->getCode() << " to class " <<
                      request->getFinalClass()->getCode() <<" from the course " << request->getCourse()->getCode() << endl;
                 break;
             default:
@@ -404,7 +404,7 @@ void MenuHandler::studentsFilters(studentSet* students) {
     cout << "Show: all students (0) | students in more than n classes (1) | students in less than n classes (2)" << endl;
     while (op5 != 0 && op5 != 1 && op5 != 2) { cout << "Option:"; cin >> op5; cout << endl; }
 
-    if (op5 == 1 || op5 == 2) {cout << "n:"; cin >> n; cout << endl;}
+    if (op5 == 1 || op5 == 2) { cout << "Number of classes:"; cin >> n; cout << endl; }
 
     cout << "Order by: number (0) | name (1)" << endl;
     while (op1 != 0 && op1 != 1) { cout << "Option:"; cin >> op1; cout << endl; }

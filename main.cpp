@@ -1,10 +1,5 @@
 #include <bits/stdc++.h>
 
-
-#include "src/headers/Student.h"
-#include "src/headers/Class.h"
-#include "src/headers/Course.h"
-#include "src/headers/Request.h"
 #include "src/headers/MenuHandler.h"
 
 using namespace std;
@@ -44,6 +39,7 @@ int main() {
         cout << "                                                    " << endl;
         cout << "  4 - Request processing                            " << endl;
         cout << "  5 - Archived requests                             " << endl;
+        cout << "                                                    " << endl;
         cout << "  0 - Exit                                          " << endl;
         cout << " __________________________________________________ " << endl;
         cout << "  Option:";
