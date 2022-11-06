@@ -5,6 +5,10 @@
 
 using namespace std;
 
+/**
+ * @brief Slot
+ * This class represents a schedule slot.
+ */
 class Slot {
     private:
         string weekday;

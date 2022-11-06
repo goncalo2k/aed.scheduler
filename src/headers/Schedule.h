@@ -4,6 +4,10 @@
 
 #include "Slot.h"
 
+/**
+ * @brief Schedule
+ * This class represents a schedule.
+ */
 class Schedule {
 private:
     set<Slot> slots;

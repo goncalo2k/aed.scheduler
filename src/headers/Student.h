@@ -6,6 +6,10 @@
 
 using namespace std;
 
+/**
+ * @brief Student
+ * This class represents a student.
+ */
 class Student {
     private:
         int number;

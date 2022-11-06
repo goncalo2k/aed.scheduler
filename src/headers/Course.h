@@ -5,6 +5,10 @@
 
 using namespace std;
 
+/**
+ * @brief Course
+ * This class represents a course.
+ */
 class Course {
     private:
         string code;

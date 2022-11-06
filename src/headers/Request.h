@@ -8,6 +8,10 @@
 
 using namespace std;
 
+/**
+ * @brief Request
+ * This class represents a request.
+ */
 class Request {
     private:
         int type;

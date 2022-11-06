@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['printschedule_76',['printSchedule',['../class_schedule.html#ac81ec9cc8624ce05752827ab6d5f7b91',1,'Schedule']]],
-  ['process_77',['process',['../class_request.html#a464533f9ec18e6535596ef2ab887262d',1,'Request']]]
+  ['operator_3c_108',['operator&lt;',['../class_slot.html#af711df5bb9ef2c82f17cda331075d3f4',1,'Slot']]]
 ];

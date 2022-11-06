@@ -8,6 +8,10 @@
 
 using namespace std;
 
+/**
+ * @brief Class
+ * This class represents a class.
+ */
 class Class {
     private:
         string code;
