@@ -54,6 +54,7 @@ void MenuHandler::readStudents(studentSet* students, classSet* classes, courseSe
             (*it3)->addStudent(number);
         }
     }
+
 }
 
 /**
@@ -200,7 +201,7 @@ void MenuHandler::readEnrollRequest(requestQueue* requests, studentSet* students
     auto it2 = classes->find(new Class(classCode, courseCode));
     auto it3 = courses->find(new Course(courseCode));
 
-    requests->push(new Request(1, (*it1), (*it2), (*it3)));
+    requests->push(new Request(1, *it1, classCode, *it3, *it2));
 
     cout << "Request submitted!" << endl;
     wait();
@@ -237,7 +238,7 @@ void MenuHandler::readLeaveRequest(requestQueue* requests, studentSet* students,
     auto it2 = classes->find(new Class(classCode, courseCode));
     auto it3 = courses->find(new Course(courseCode));
 
-    requests->push(new Request(2, (*it1), (*it2), (*it3)));
+    requests->push(new Request(2, *it1, classCode, *it3, *it2));
 
     cout << "Request submitted!" << endl;
     wait();
@@ -279,7 +280,7 @@ void MenuHandler::readSwapRequest(requestQueue* requests, studentSet* students, 
     auto it3 = classes->find(new Class(finalClass, courseCode));
     auto it4 = courses->find(new Course(courseCode));
 
-    requests->push(new Request(3, *it1, *it2, *it3, *it4));
+    requests->push(new Request(3, *it1, initialClass, finalClass, *it4, *it2, *it3));
 
     cout << "Request submitted!" << endl;
     wait();

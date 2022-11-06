@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "src/headers/MenuHandler.h"
+#include "src/headers/Schedule.h"
 
 using namespace std;
 

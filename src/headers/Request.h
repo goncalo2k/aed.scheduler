@@ -16,13 +16,17 @@ class Request {
     private:
         int type;
         Student* student;
-        Class* initialClass;
-        Class* finalClass;
+        string initialClass;
+        string finalClass;
         Course* course;
+        Class* initialClassPtr;
+        Class* finalClassPtr;
 
     public:
-        Request(int type, Student* student, Class* initialClass, Class* finalClass, Course* course);
-        Request(int type, Student* student, Class* initialClass, Course* course);
+        Request(int type, Student* student, string initialClass, string finalClass, Course* course, Class* initialClassPtr, Class* finalClassPtr);
+        Request(int type, Student* student, string initialClass, Course* course, Class* initialClassPtr);
+        Request(int type, Student* student, Class* initialClassPtr, Class* finalClassPtr, Course* course);
+        Request(int type, Student* student, Class* initialClassPtr, Course* course);
         int getType() const;
         Student* getStudent() const;
         Class* getInitialClass() const;

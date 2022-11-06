@@ -1,3 +1,5 @@
+#include <utility>
+
 #include "../headers/Request.h"
 
 /**
@@ -10,12 +12,14 @@
  * @param finalClass - The class the student wants to be swapped to.
  * @param course - The course where the swap is being made.
  */
-Request::Request(int type, Student* student, Class* initialClass, Class* finalClass, Course* course) {
+Request::Request(int type, Student* student, string initialClass, string finalClass, Course* course, Class* initialClassPtr, Class* finalClassPtr) {
     this->type = type;
     this->student = student;
-    this->initialClass = initialClass;
-    this->finalClass = finalClass;
+    this->initialClass = std::move(initialClass);
+    this->finalClass = std::move(finalClass);
     this->course = course;
+    this->initialClassPtr = initialClassPtr;
+    this->finalClassPtr = finalClassPtr;
 }
 
 /**
@@ -27,12 +31,34 @@ Request::Request(int type, Student* student, Class* initialClass, Class* finalCl
  * @param initialClass - The class the student wants to be removed from or added to.
  * @param course - The course where the removal or enrollment is being made.
  */
-Request::Request(int type, Student* student, Class* initialClass, Course* course) {
+Request::Request(int type, Student* student, string initialClass, Course* course, Class* initialClassPtr) {
     this->type = type;
     this->student = student;
-    this->initialClass = initialClass;
-    this->finalClass = nullptr;
+    this->initialClass = std::move(initialClass);
+    this->finalClass = "";
     this->course = course;
+    this->initialClassPtr = initialClassPtr;
+    this->finalClassPtr = nullptr;
+}
+
+Request::Request(int type, Student* student, Class* initialClassPtr, Class* finalClassPtr, Course* course) {
+    this->type = type;
+    this->student = student;
+    this->initialClass = "";
+    this->finalClass = "";
+    this->course = course;
+    this->initialClassPtr = initialClassPtr;
+    this->finalClassPtr = finalClassPtr;
+}
+
+Request::Request(int type, Student* student, Class* initialClassPtr, Course* course) {
+    this->type = type;
+    this->student = student;
+    this->initialClass = "";
+    this->finalClass = "";
+    this->course = course;
+    this->initialClassPtr = initialClassPtr;
+    this->finalClassPtr = nullptr;
 }
 
 /**
@@ -63,7 +89,7 @@ Student* Request::getStudent() const {
  * @return The class where the student is currently enrolled for type 1 requests, the class the student will be added to or removed from in type 2 and 3 requests.
  */
 Class* Request::getInitialClass() const {
-    return this->initialClass;
+    return this->initialClassPtr;
 }
 
 /**
@@ -73,7 +99,7 @@ Class* Request::getInitialClass() const {
  * @return The class the student wants to be swapped to in type 1 requests, nullptr in type 2 and 3 requests .
  */
 Class* Request::getFinalClass() const {
-    return this->finalClass;
+    return this->finalClassPtr;
 }
 
 /**
@@ -119,8 +145,8 @@ bool Request::process(const string& fileName) {
  * @return True if the request was processed successfully, false otherwise.
  */
 bool Request::addProcess(const std::string &fileName) {
-    if (this->student->getClasses().find(make_pair(this->course->getCode(), this->initialClass->getCode())) != this->student->getClasses().end()) {
-        cout << "Student " << this->student->getNumber() << " is either already enrolled in class " << this->initialClass->getCode() << " or in another class. On the later case, try a swap." << endl;
+    if (this->student->getClasses().find(make_pair(this->course->getCode(), this->initialClass)) != this->student->getClasses().end()) {
+        cout << "Student " << this->student->getNumber() << " is either already enrolled in class " << this->initialClassPtr->getCode() << " or in another class. On the later case, try a swap." << endl;
         this->file();
         return false;
     }
@@ -131,8 +157,10 @@ bool Request::addProcess(const std::string &fileName) {
         return false;
     }
 
-    if (this->initialClass->getStudents().size() >= 30) {
-        cout << "Class " << this->initialClass->getCode() << " is full." << endl;
+
+
+    if (this->initialClassPtr->getStudents().size() >= 30) {
+        cout << "Class " << this->initialClassPtr->getCode() << " is full." << endl;
         this->file();
         return false;
     }
@@ -140,7 +168,7 @@ bool Request::addProcess(const std::string &fileName) {
 
     bool isPossible = true;
     for (const auto& s1 : this->student->getSchedule()->getSlots()) {
-        for (const auto &s2: this->initialClass->getSlots()) {
+        for (const auto &s2: this->initialClassPtr->getSlots()) {
             if (!s1.compatible(&s2)) {
                 isPossible = false;
                 break;
@@ -149,13 +177,13 @@ bool Request::addProcess(const std::string &fileName) {
     }
 
     if (!isPossible) {
-        cout << "Student " << this->student->getNumber() << " has a schedule conflict with class " << this->initialClass->getCode() << "." << endl;
+        cout << "Student " << this->student->getNumber() << " has a schedule conflict with class " << this->initialClassPtr->getCode() << "." << endl;
         this->file();
         return false;
     }
 
-    this->student->addClass(make_pair(initialClass->getCourse(), initialClass->getCode()));
-    initialClass->addStudent(this->student->getNumber());
+    this->student->addClass(make_pair(initialClassPtr->getCourse(), initialClassPtr->getCode()));
+    initialClassPtr->addStudent(this->student->getNumber());
     course->addStudent(this->student->getNumber());
 
 
@@ -170,20 +198,13 @@ bool Request::addProcess(const std::string &fileName) {
  * @return True if the request was processed successfully, false otherwise.
  */
 bool Request::removeProcess(const std::string &fileName) {
-    if (this->student->getClasses().find(make_pair(this->course->getCode(), this->initialClass->getCode())) == this->student->getClasses().end()) {
-        cout << "Student " << this->student->getNumber() << " is not enrolled in class " << this->initialClass->getCode() << "." << endl;
-        this->file();
 
-        return false;
-    }
+    this->student->removeClass(make_pair(initialClassPtr->getCourse(), initialClassPtr->getCode()));
+    initialClassPtr->removeStudent(this->student->getNumber());
+    course->removeStudent(this->student->getNumber());
 
-    else {
-        this->student->removeClass(make_pair(initialClass->getCourse(), initialClass->getCode()));
-        initialClass->removeStudent(this->student->getNumber());
-        course->removeStudent(this->student->getNumber());
+    return true;
 
-        return true;
-    }
 }
 
 /**
@@ -194,25 +215,8 @@ bool Request::removeProcess(const std::string &fileName) {
  * @return True if the request was processed successfully, false otherwise.
  */
 bool Request::swapProcess(const std::string &fileName) {
-    if (this->student->getClasses().find(make_pair(course->getCode(), initialClass->getCode())) == this->student->getClasses().end()) {
-        cout << "Student " << this->student->getNumber() << " is not enrolled in class " << this->initialClass->getCode() << "." << endl;
-        this->file();
-        return false;
-    }
-
-    auto it = find_if(this->student->getClasses().begin(), this->student->getClasses().end(), [&](const pair<string, string>& c) {
-        return c.first == this->course->getCode() && c.first == this->finalClass->getCode(); });
-
-    if (it != this->student->getClasses().end()) {
-        cout << "Student " << this->student->getNumber() << " is already enrolled in class " << this->finalClass->getCode() << "." << endl;
-        //this->file();
-        return false;
-    }
-
-
-
-    if (this->finalClass->getStudents().size() >= 30) {
-        cout << "Class " << this->finalClass->getCode() << " is full." << endl;
+    if (this->finalClassPtr->getStudents().size() >= 30) {
+        cout << "Class " << this->finalClassPtr->getCode() << " is full." << endl;
         this->file();
         return false;
     }
@@ -223,30 +227,12 @@ bool Request::swapProcess(const std::string &fileName) {
         return false;
     }
 
-    bool isPossible = true;
-    set<Slot> slots = this->student->getSchedule()->getSlots();
-    slots.erase(this->initialClass->getSlots().begin(), this->initialClass->getSlots().end());
-    for (const auto& s1 : slots) {
-        for (const auto &s2: this->finalClass->getSlots()) {
-            if (!s1.compatible(&s2)) {
-                isPossible = false;
-                break;
-            }
-        }
-    }
-
-    if (!isPossible) {
-        cout << "Student " << this->student->getNumber() << " has a schedule conflict with class " << this->finalClass->getCode() << "." << endl;
-        this->file();
-        return false;
-    }
-
-    this->student->removeClass(make_pair(initialClass->getCourse(), initialClass->getCode()));
-    initialClass->removeStudent(this->student->getNumber());
+    this->student->removeClass(make_pair(initialClassPtr->getCourse(), initialClassPtr->getCode()));
+    initialClassPtr->removeStudent(this->student->getNumber());
     course->removeStudent(this->student->getNumber());
 
-    this->student->addClass(make_pair(finalClass->getCourse(), finalClass->getCode()));
-    finalClass->addStudent(this->student->getNumber());
+    this->student->addClass(make_pair(finalClassPtr->getCourse(), finalClassPtr->getCode()));
+    finalClassPtr->addStudent(this->student->getNumber());
     course->addStudent(this->student->getNumber());
 
     return true;
@@ -255,7 +241,7 @@ bool Request::swapProcess(const std::string &fileName) {
 /**
  * @brief Request::file
  * Writes the request to the file.
- * Complexity: O(1) ?
+ * Complexity: O(1)
  */
 void Request::file() {
     ofstream file;
@@ -267,11 +253,11 @@ void Request::file() {
     } else {
         if (this->type == 3) {
             file << this->type << "," << this->student->getNumber() << "," << this->course->getCode() << ","
-                 << this->initialClass->getCode() << "," << this->finalClass->getCode() << endl;
+                 << this->initialClassPtr->getCode() << "," << this->finalClassPtr->getCode() << endl;
         }
         else {
             file << this->type << "," << this->student->getNumber() << "," << this->course->getCode() << ","
-                 << this->initialClass->getCode() << "XXXXXXX" << this->initialClass->getCode() << endl;
+                 << this->initialClassPtr->getCode() << "XXXXXXX" << this->initialClassPtr->getCode() << endl;
             ;
         }
     }
