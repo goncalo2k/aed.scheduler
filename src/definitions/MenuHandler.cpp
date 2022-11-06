@@ -7,7 +7,7 @@
 /**
  * @brief readStudents
  * Reads the students from the file "students_classes.csv" and adds them to the respective set, as well as their classes and the courses they're enrolled in.
- * Complexity: O(n x log n)
+ * Complexity: O(n log n)
  * @param students - Set of students - read from the files.
  * @param classes - Set of classes read from the files.
  * @param courses - Set of courses read from the files.
@@ -60,7 +60,7 @@ void MenuHandler::readStudents(studentSet* students, classSet* classes, courseSe
 /**
  * @brief readClasses
  * Reads the classes from the file "classes.csv" and adds them to the respective  set.
- * Complexity: O(n x log n)
+ * Complexity: O(n log n)
  * @param classes - Set of classes read from the files.
  */
 void MenuHandler::readClasses(classSet* classes) {
@@ -104,7 +104,7 @@ void MenuHandler::readClasses(classSet* classes) {
 /**
  * @brief readCourses
  * Reads the courses from the file "classes_per_uc.csv" and adds them to the respective set.
- * Complexity: O(n x log n)
+ * Complexity: O(n log n)
  * @param courses - Set of courses read from the files.
  */
 void MenuHandler::readCourses(courseSet* courses) {
@@ -393,7 +393,7 @@ void MenuHandler::listMenu(studentSet* students, classSet* classes, courseSet* c
 /**
  * @brief studentsFilters
  * Handles all the users' options when listing students.
- * Complexity: O(n) or O(n²)
+ * Complexity: O(n)
  * @param students - Set of students read from the files.
  */
 void MenuHandler::studentsFilters(studentSet* students) {
@@ -432,7 +432,7 @@ void MenuHandler::studentsFilters(studentSet* students) {
 /**
  * @listStudents
  * Lists all the students in the set, correctly filtered, according to studentFilters.
- * Complexity: O(n²) or O(n)?
+ * Complexity: O(n)
  * @param students - Set of students read from the files.
  * @param op1 - Option 1 - manages how the students will be displayed: either by name or by number.
  * @param op2 - Option 2 - manages the order of the students: either ascending or descending.
@@ -502,7 +502,7 @@ void MenuHandler::listStudents(studentSet* students, int op1, int op2, int op3, 
 /**
  * @brief classesFilters
  * Handles all the users' options when listing classes.
- * Complexity: O(n) or O(n²)
+ * Complexity: O(n)
  * @param classes - Set of classes read from the files.
  * @param students - Set of students read from the files.
  */
@@ -528,7 +528,7 @@ void MenuHandler::classesFilters(classSet* classes, studentSet* students) {
 /**
  * @brief listClasses
  * Lists all the classes in the set, correctly filtered, according to classFilters.
- * Complexity: O(n²) or O(n)?
+ * Complexity: O(n^2)
  * @param classes - Set of classes read from the files.
  * @param students - Set of students read from the files.
  * @param op1 - Option 1 - manages how the classes will be displayed: either by code or by occupation.
@@ -575,7 +575,7 @@ void MenuHandler::listClasses(classSet* classes, studentSet* students, int op1, 
 /**
  * @brief courseFilters
  * Handles all the users' options when listing courses.
- * Complexity: O(n) or O(n²)
+ * Complexity: O(n)
  * @param courses - Set of courses read from the files.
  * @param students - Set of students read from the files.
  */
@@ -603,7 +603,7 @@ void MenuHandler::coursesFilters(courseSet *courses, studentSet *students) {
 /**
  * @brief listCourses
  * Lists all the courses in the set, correctly filtered, according to courseFilters.
- * Complexity: O(n²) or O(n)?
+ * Complexity: O(n²)
  * @param courses - Set of courses read from the files.
  * @param students - Set of students read from the files.
  * @param op1 - Option 1 - manages the order of the courses: either ascending or descending.

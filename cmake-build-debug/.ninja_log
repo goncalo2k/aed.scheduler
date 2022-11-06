@@ -71,3 +71,10 @@
 9	2161	6894670796518294	CMakeFiles/schedules.dir/src/definitions/Request.cpp.obj	b856b96577b64aca
 4	2190	6894670796798292	CMakeFiles/schedules.dir/main.cpp.obj	de0f6631e97ae1b5
 2190	2726	6894670802118278	schedules.exe	c97e9c0701e152e5
+4	2199	6894676160742765	CMakeFiles/schedules.dir/src/definitions/Slot.cpp.obj	a4bf8ca0ade9383f
+16	2459	6894676163342767	CMakeFiles/schedules.dir/src/definitions/Student.cpp.obj	6820da875ba058ab
+9	2481	6894676163572774	CMakeFiles/schedules.dir/src/definitions/Request.cpp.obj	b856b96577b64aca
+12	2539	6894676164142762	CMakeFiles/schedules.dir/src/definitions/Course.cpp.obj	bbfc2b7589e56eae
+20	2551	6894676164212766	CMakeFiles/schedules.dir/src/definitions/Class.cpp.obj	6f843f6aa2ca3c2b
+25	3526	6894676174012774	CMakeFiles/schedules.dir/src/definitions/MenuHandler.cpp.obj	118dfa16899b77df
+3527	3934	6894676178062762	schedules.exe	c97e9c0701e152e5

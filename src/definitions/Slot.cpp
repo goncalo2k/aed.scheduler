@@ -5,7 +5,7 @@
 /**
  * @brief Slot::Slot
  * Constructor for the Slot class.
- * Complexity: O(5)
+ * Complexity: O(1)
  * @param weekday - The day of the week the class represented by the slot is on.
  * @param startTime - The time the class represented by the slot starts.
  * @param endTime - The time the class represented by the slot ends.
@@ -73,7 +73,7 @@ string Slot::getType() const {
 /**
  * @brief Slot::compatible
  * Checks if the slot is compatible with another slot.
- * Complexity: O(2) ?
+ * Complexity: O(1)
  * @param weekday - The new weekday.
  */
 bool Slot::compatible(const Slot *slot) const {

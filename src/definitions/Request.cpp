@@ -115,7 +115,7 @@ Course* Request::getCourse() const {
 /**
  * @brief Request::process
  * Processes the requests
- * Complexity: O(1)
+ * Complexity: O(log n)
  * @param fileName - Classes file.
  * @return True if the request was processed successfully, false otherwise.
  */
@@ -140,7 +140,7 @@ bool Request::process(const string& fileName) {
 /**
  * @brief Request::addProcess
  * Processes a request of type 1 - adding a student to a class.
- * Complexity: O(n² x log n)
+ * Complexity: O(log n)
  * @param fileName - Classes file.
  * @return True if the request was processed successfully, false otherwise.
  */
@@ -193,7 +193,7 @@ bool Request::addProcess(const std::string &fileName) {
 /**
  * @brief Request::removeProcess
  * Processes a request of type 1 - adding a student to a class.
- * Complexity O(log n)?
+ * Complexity O(log n)
  * @param fileName  - Classes file.
  * @return True if the request was processed successfully, false otherwise.
  */
@@ -210,7 +210,7 @@ bool Request::removeProcess(const std::string &fileName) {
 /**
  * @brief Request::swapProcess
  * Processes a request of type 1 - adding a student to a class.
- * Complexity: O(n² x 2 x log n) ?
+ * Complexity: O(log n) ?
  * @param fileName - Classes file.
  * @return True if the request was processed successfully, false otherwise.
  */

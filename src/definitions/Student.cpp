@@ -5,7 +5,7 @@
 /**
  * @brief Student::Student
  * This is the Student constructor. It receives the student's number and the student's name. Considers that a student has no schedule or classes associated to it initially.
- * Complexity: O(2)
+ * Complexity: O(1)
  * @param number - The student's number.
  * @param name - The student's name.
  */
@@ -37,7 +37,7 @@ string Student::getName() const{
 /**
  * @brief Student::addClass
  * Adds a class to the student's classes.
- * complexity: O(1)
+ * complexity: O(log n)
  * @param cl - The class to be added.
  */
 void Student::addClass(const pair<string, string>& cl) {
